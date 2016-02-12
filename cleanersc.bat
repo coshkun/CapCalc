@@ -10,6 +10,7 @@ rd /s /q Library
 rd /s /q Temp
 echo "skipping: del /s /q /f *.csproj"
 del /s /q /f *.pidb
+del /s /q /f *.meta
 echo "skipping: del /s /q /f *.unityproj"
 del /s /q /f *.DS_Store
 echo "skipping: del /s /q /f *.sln"
