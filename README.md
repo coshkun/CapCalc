@@ -1,4 +1,5 @@
-# 3dCamSysTest
+# CapCalc (Capacity Calculator)
+##### Unity3d based Environment For 13,6 Semi-Trailers
 
 Release test for linux based systems for one of my old projects.
 
