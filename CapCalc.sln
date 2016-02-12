@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{42C90EBE-4AD3-11F4-7198-560A024CC892}") = "CapCalc", "Assembly-CSharp-firstpass.csproj", "{2CBB49D6-FAE5-B2D8-19E3-830DA96EB323}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2CBB49D6-FAE5-B2D8-19E3-830DA96EB323}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CBB49D6-FAE5-B2D8-19E3-830DA96EB323}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CBB49D6-FAE5-B2D8-19E3-830DA96EB323}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CBB49D6-FAE5-B2D8-19E3-830DA96EB323}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
