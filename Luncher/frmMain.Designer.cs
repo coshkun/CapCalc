@@ -34,11 +34,18 @@
             this.sc1 = new System.Windows.Forms.SplitContainer();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnCalculate = new System.Windows.Forms.Button();
+            this.lbl_Y = new System.Windows.Forms.Label();
+            this.lbl_L = new System.Windows.Forms.Label();
+            this.lbl_Z = new System.Windows.Forms.Label();
+            this.lbl_X = new System.Windows.Forms.Label();
+            this.pBox = new System.Windows.Forms.PictureBox();
+            this.grpSelectedCargo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.sc1.Panel1.SuspendLayout();
             this.sc1.Panel2.SuspendLayout();
             this.sc1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pBox)).BeginInit();
             this.SuspendLayout();
             // 
             // grpSelectedCargo
@@ -46,14 +53,19 @@
             this.grpSelectedCargo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpSelectedCargo.BackgroundImage = global::Luncher.Properties.Resources.cargo_picker;
             this.grpSelectedCargo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.grpSelectedCargo.Controls.Add(this.lbl_L);
+            this.grpSelectedCargo.Controls.Add(this.lbl_Z);
+            this.grpSelectedCargo.Controls.Add(this.lbl_X);
+            this.grpSelectedCargo.Controls.Add(this.lbl_Y);
+            this.grpSelectedCargo.Controls.Add(this.pBox);
             this.grpSelectedCargo.Location = new System.Drawing.Point(6, 1);
             this.grpSelectedCargo.Name = "grpSelectedCargo";
             this.grpSelectedCargo.Size = new System.Drawing.Size(612, 204);
             this.grpSelectedCargo.TabIndex = 0;
             this.grpSelectedCargo.TabStop = false;
             this.grpSelectedCargo.Text = "Selected Cargo";
+            this.grpSelectedCargo.Resize += new System.EventHandler(this.grpSelectedCargo_Resize);
             // 
             // dataGridView1
             // 
@@ -119,6 +131,56 @@
             this.btnCalculate.Text = "Calculate Grid";
             this.btnCalculate.UseVisualStyleBackColor = true;
             // 
+            // lbl_Y
+            // 
+            this.lbl_Y.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_Y.AutoSize = true;
+            this.lbl_Y.Location = new System.Drawing.Point(221, 142);
+            this.lbl_Y.Name = "lbl_Y";
+            this.lbl_Y.Size = new System.Drawing.Size(15, 13);
+            this.lbl_Y.TabIndex = 4;
+            this.lbl_Y.Text = "y:";
+            // 
+            // lbl_L
+            // 
+            this.lbl_L.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_L.AutoSize = true;
+            this.lbl_L.Location = new System.Drawing.Point(350, 64);
+            this.lbl_L.Name = "lbl_L";
+            this.lbl_L.Size = new System.Drawing.Size(36, 13);
+            this.lbl_L.TabIndex = 4;
+            this.lbl_L.Text = "Level:";
+            // 
+            // lbl_Z
+            // 
+            this.lbl_Z.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_Z.AutoSize = true;
+            this.lbl_Z.Location = new System.Drawing.Point(350, 142);
+            this.lbl_Z.Name = "lbl_Z";
+            this.lbl_Z.Size = new System.Drawing.Size(15, 13);
+            this.lbl_Z.TabIndex = 4;
+            this.lbl_Z.Text = "z:";
+            // 
+            // lbl_X
+            // 
+            this.lbl_X.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_X.AutoSize = true;
+            this.lbl_X.Location = new System.Drawing.Point(273, 172);
+            this.lbl_X.Name = "lbl_X";
+            this.lbl_X.Size = new System.Drawing.Size(15, 13);
+            this.lbl_X.TabIndex = 4;
+            this.lbl_X.Text = "x:";
+            // 
+            // pBox
+            // 
+            this.pBox.Image = global::Luncher.Properties.Resources.cargo_picker;
+            this.pBox.Location = new System.Drawing.Point(216, 16);
+            this.pBox.Name = "pBox";
+            this.pBox.Size = new System.Drawing.Size(180, 180);
+            this.pBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pBox.TabIndex = 4;
+            this.pBox.TabStop = false;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -129,11 +191,15 @@
             this.MinimumSize = new System.Drawing.Size(300, 300);
             this.Name = "frmMain";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.frmMain_Load);
+            this.grpSelectedCargo.ResumeLayout(false);
+            this.grpSelectedCargo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.sc1.Panel1.ResumeLayout(false);
             this.sc1.Panel2.ResumeLayout(false);
             this.sc1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -146,6 +212,11 @@
         private System.Windows.Forms.SplitContainer sc1;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnCalculate;
+        private System.Windows.Forms.Label lbl_L;
+        private System.Windows.Forms.Label lbl_Z;
+        private System.Windows.Forms.Label lbl_X;
+        private System.Windows.Forms.Label lbl_Y;
+        private System.Windows.Forms.PictureBox pBox;
     }
 }
 
