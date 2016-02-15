@@ -1,7 +1,7 @@
 #!/usr/bin/sh
 
-rm -rf ./Library
-rm -rf ./Temp
+#find ./linux/ -name "Library" -exec /bin/rm -rf {} ";"
+#find ./linux/ -name "Temp" -exec /bin/rm -rf {} ";"
 find ./ -name "*.pidb" -exec /bin/rm {} ";"
 find ./ -name "*.meta" -exec /bin/rm {} ";"
 find ./ -name "*.userprefs" -exec /bin/rm {} ";"
