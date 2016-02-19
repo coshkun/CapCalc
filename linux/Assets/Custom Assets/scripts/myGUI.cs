@@ -1,20 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[ExecuteInEditMode]
 public class myGUI : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+	public bool DebugMode = false;
+	public string Caption = "Panel Name";
+	public Texture2D ButtonImage = null;
+	public Rect Position = new Rect (10, 10, Screen.width - 20, Screen.height - 50);
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 	void OnGUI(){
-		// Make a background for the interface
-		GUI.Box (new Rect (10, 10, 100, 300), "Menu");
+
+		if (DebugMode || Application.isPlaying) 
+		{	// Apply debug mode to view changes on editor
+
+			// Make a background for the interface
+			GUI.Box (Position, Caption);
+
+		}
 	}
 }
