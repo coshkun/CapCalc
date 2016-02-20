@@ -1,9 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Custom Assets/scripts/myGUI.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Custom Assets/gui/GUI_Label.cs">
     <Files>
-      <File FileName="Assets/Custom Assets/scripts/myGUI.cs" Line="10" Column="59" />
-      <File FileName="Assets/Custom Assets/gui/GUI_Button.cs" Line="7" Column="1" />
+      <File FileName="Assets/Custom Assets/gui/GUI_Button.cs" Line="39" Column="10" />
+      <File FileName="Assets/Custom Assets/gui/GUI_Panel.cs" Line="21" Column="1" />
+      <File FileName="Assets/Custom Assets/gui/GUI_Label.cs" Line="9" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
