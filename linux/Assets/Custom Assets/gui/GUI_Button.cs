@@ -37,6 +37,9 @@ public class GUI_Button : MonoBehaviour {
 		case "Exit":
 			Application.Quit();
 			break;
+		case "Save File":
+			Logic.CreateFile();
+			break;
 		default:
 			break;
 		}

@@ -1,3 +1,6 @@
 Base path: /opt/Unity/Editor/Data
-Pipe name: \\.\pipe\UnityShaderCompiler-64bit-5--2012023040
+Pipe name: \\.\pipe\UnityShaderCompiler-64bit-5--1398737152
 Cmd: getPlatforms
+End of pipe
+
+Quitting shader compiler process
