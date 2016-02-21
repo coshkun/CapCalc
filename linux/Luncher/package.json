@@ -1,10 +1,10 @@
 {
-  "name": "Luncher",
-  "version": "0.0.0",
-  "description": "Luncher for CapCalc render engine",
-  "main": "main.js",
+  "name": "luncher",
+  "version": "1.0.0",
+  "description": "Linux luncher of miracle",
+  "main": "index.js",
   "scripts": {
-    "test": "debug"
+    "start": "electron ."
   },
   "author": "Coskun Caner",
   "license": "CC01"
