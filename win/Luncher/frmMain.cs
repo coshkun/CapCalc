@@ -47,8 +47,8 @@ namespace Luncher
             // initialize the Color Picker
             cd = new ColorDialog();
             cd.FullOpen = true;
-            cd.Color = Helper.GetRandomColor();
-            txtColor.Text = ColorTranslator.ToHtml(cd.Color);
+            pC = Helper.GetRandomColor(); cd.Color = pC;
+            txtColor.Text = ColorTranslator.ToHtml(pC);
 
             // initialize the data table
             var dt = new DataTable();
@@ -57,8 +57,10 @@ namespace Luncher
                    new DataColumn("Long(X)",typeof(float)),
                    new DataColumn("Height(Y)", typeof(float)),
                    new DataColumn("Width(Z)",typeof(float)),
+                   new DataColumn("Level",typeof(int)),
                    new DataColumn("Weight", typeof(float)),
-                   new DataColumn("CBM",typeof(float))
+                   new DataColumn("CBM",typeof(float)),
+                   new DataColumn("Color", typeof(string))
             });
             ds = new DataSet();
             ds.Tables.Add(dt);
@@ -116,6 +118,57 @@ namespace Luncher
             
             btnColor.BackColor = pC;
             cd.Color = pC;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            ds.Tables[0].Rows.Add(new object[]
+            {
+                txtName.Text,
+                (float)numLong.Value,
+                (float)numHeight.Value,
+                (float)numWidth.Value,
+                (int)numLevel.Value,
+                (float)numWeight.Value,
+                    (float)(numLong.Value * numHeight.Value * numWidth.Value),
+                (string) ColorTranslator.ToHtml(cd.Color)
+            });
+            
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            saveFileDialog.Filter = "XML Files (*.xml)|*.xml|All Files (*.*)|*.*";
+            if (saveFileDialog.ShowDialog(this) != DialogResult.OK) { return; }
+
+            string FileName = saveFileDialog.FileName;
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            openFileDialog.Filter = "XML Files (*.xml)|*.xml|All Files (*.*)|*.*";
+            if (openFileDialog.ShowDialog(this) != DialogResult.OK) { return; }
+            
+            string FileName = openFileDialog.FileName;
         }
 
     }

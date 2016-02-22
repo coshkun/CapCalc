@@ -54,6 +54,12 @@
             this.numWeight = new System.Windows.Forms.NumericUpDown();
             this.btnColor = new System.Windows.Forms.Button();
             this.txtColor = new System.Windows.Forms.TextBox();
+            this.btnNew = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.grpSelectedCargo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -74,6 +80,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpSelectedCargo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.grpSelectedCargo.Controls.Add(this.btnDelete);
+            this.grpSelectedCargo.Controls.Add(this.btnUpdate);
+            this.grpSelectedCargo.Controls.Add(this.btnAdd);
+            this.grpSelectedCargo.Controls.Add(this.btnNew);
             this.grpSelectedCargo.Controls.Add(this.btnColor);
             this.grpSelectedCargo.Controls.Add(this.numWeight);
             this.grpSelectedCargo.Controls.Add(this.numLevel);
@@ -169,6 +179,8 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.btnExit);
+            this.flowLayoutPanel1.Controls.Add(this.btnSave);
+            this.flowLayoutPanel1.Controls.Add(this.btnLoad);
             this.flowLayoutPanel1.Controls.Add(this.btnCalculate);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
@@ -192,8 +204,8 @@
             // 
             // btnCalculate
             // 
-            this.btnCalculate.Location = new System.Drawing.Point(440, 0);
-            this.btnCalculate.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.btnCalculate.Location = new System.Drawing.Point(216, 0);
+            this.btnCalculate.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.btnCalculate.Name = "btnCalculate";
             this.btnCalculate.Size = new System.Drawing.Size(100, 23);
             this.btnCalculate.TabIndex = 1;
@@ -211,6 +223,7 @@
             // sc1.Panel1
             // 
             this.sc1.Panel1.Controls.Add(this.grpSelectedCargo);
+            this.sc1.Panel1MinSize = 207;
             // 
             // sc1.Panel2
             // 
@@ -371,6 +384,72 @@
             this.txtColor.Text = "#";
             this.txtColor.TextChanged += new System.EventHandler(this.txtColor_TextChanged);
             // 
+            // btnNew
+            // 
+            this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNew.Location = new System.Drawing.Point(6, 177);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(40, 20);
+            this.btnNew.TabIndex = 4;
+            this.btnNew.Text = "New";
+            this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAdd.Location = new System.Drawing.Point(53, 177);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(40, 20);
+            this.btnAdd.TabIndex = 4;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnUpdate.Location = new System.Drawing.Point(100, 177);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(53, 20);
+            this.btnUpdate.TabIndex = 4;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDelete.Location = new System.Drawing.Point(160, 177);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(50, 20);
+            this.btnDelete.TabIndex = 4;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnLoad
+            // 
+            this.btnLoad.Location = new System.Drawing.Point(328, 0);
+            this.btnLoad.Margin = new System.Windows.Forms.Padding(12, 0, 0, 0);
+            this.btnLoad.Name = "btnLoad";
+            this.btnLoad.Size = new System.Drawing.Size(100, 23);
+            this.btnLoad.TabIndex = 1;
+            this.btnLoad.Text = "Load File";
+            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(431, 0);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 0, 12, 0);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(100, 23);
+            this.btnSave.TabIndex = 0;
+            this.btnSave.Text = "Save File";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -378,7 +457,7 @@
             this.ClientSize = new System.Drawing.Size(624, 442);
             this.Controls.Add(this.sc1);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.MinimumSize = new System.Drawing.Size(480, 480);
+            this.MinimumSize = new System.Drawing.Size(540, 480);
             this.Name = "frmMain";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.frmMain_Load);
@@ -427,6 +506,12 @@
         private System.Windows.Forms.NumericUpDown numHeight;
         private System.Windows.Forms.NumericUpDown numLong;
         private System.Windows.Forms.TextBox txtColor;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnNew;
+        private System.Windows.Forms.Button btnLoad;
+        private System.Windows.Forms.Button btnSave;
     }
 }
 
