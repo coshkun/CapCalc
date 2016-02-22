@@ -5,3 +5,11 @@ C:\Users\owner\Documents\GitHub\CapCalc\Luncher\obj\Debug\Luncher.Properties.Res
 C:\Users\owner\Documents\GitHub\CapCalc\Luncher\obj\Debug\Luncher.csproj.GenerateResource.Cache
 C:\Users\owner\Documents\GitHub\CapCalc\Luncher\obj\Debug\Luncher.exe
 C:\Users\owner\Documents\GitHub\CapCalc\Luncher\obj\Debug\Luncher.pdb
+C:\Users\owner\Documents\GitHub\CapCalc\win\Luncher\bin\Debug\Luncher.exe
+C:\Users\owner\Documents\GitHub\CapCalc\win\Luncher\bin\Debug\Luncher.pdb
+C:\Users\owner\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.csprojResolveAssemblyReference.cache
+C:\Users\owner\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.frmMain.resources
+C:\Users\owner\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.Properties.Resources.resources
+C:\Users\owner\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.csproj.GenerateResource.Cache
+C:\Users\owner\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.exe
+C:\Users\owner\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.pdb
