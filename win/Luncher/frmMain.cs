@@ -22,8 +22,9 @@ namespace Luncher
         private Color pC;
         private string HEXC = string.Empty;
         private string _ID;
-        private string[] NameArray = new string[999];
+        private string[] NameArray = new string[1000];
         private int NameIndex = 0;
+        private string _rValue = ""; // Lookup variable to make recursive name search
 
         public frmMain()
         {
@@ -72,7 +73,7 @@ namespace Luncher
             ds.Tables.Add(dt);
             dataGridView1.DataSource = ds.Tables[0];
             dataGridView1.Columns["ID"].Visible = false;
-            for (int i = 0; i <= 999; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 NameArray[i] = "Cargo " + string.Format("{0:000}", i);
             }
@@ -125,7 +126,7 @@ namespace Luncher
             //if (HEXC.Length > 0 && HEXC[0] != '#' ||
             //    false == int.TryParse(HEXC.Substring(1, HEXC.Length - 1), out rslt)) { HEXC = ""; }
             try { pC = ColorTranslator.FromHtml(HEXC); }
-            catch (Exception ex) { pC = Color.Black; HEXC = string.Empty; }
+            catch { pC = Color.Black; HEXC = string.Empty; }
             
             btnColor.BackColor = pC;
             cd.Color = pC;
@@ -147,6 +148,7 @@ namespace Luncher
                        where (string)myRow.Field<string>("Name") == txtName.Text
                        select new[] { (string)myRow.Field<string>("Name") };// Get Name;
 
+            _rValue = ""; // Reset the lookup variable
             if (chkN.Any()) { txtName.Text = CheckName(txtName.Text); }
 
             ds.Tables[0].Rows.Add(new object[]
@@ -164,7 +166,6 @@ namespace Luncher
             dataGridView1.DataSource = ds.Tables[0];
         }
         
-        private string _rValue = "";
         private string CheckName(string NameWhoChecked)
         {
             var chkN = from myRow in ds.Tables[0].AsEnumerable()
@@ -198,7 +199,7 @@ namespace Luncher
             r.SetField<string>("Name", (string)txtName.Text);
             r.SetField<double>("Long", (double)numLong.Value);
             r.SetField<double>("Height", (double)numHeight.Value);
-            r.SetField<double>("Width", (double)numWeight.Value);
+            r.SetField<double>("Width", (double)numWidth.Value);
             r.SetField<int>("Level", (int)numLevel.Value);
             r.SetField<double>("Weight", (double)numWeight.Value);
             r.SetField<double>("CBM",
