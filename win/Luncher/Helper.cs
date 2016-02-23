@@ -829,6 +829,30 @@ namespace Luncher
             return System.Drawing.Color.FromArgb(randonGen.Next(255), randonGen.Next(255),
             randonGen.Next(255));
         }
+        /// <summary>
+        /// Generates 16 digit Uniq string based on time elapsed GUID.
+        /// </summary>
+        /// <returns></returns>
+        public static string GenerateId()
+        {
+            long i = 1;
+            foreach (byte b in Guid.NewGuid().ToByteArray())
+            {
+                i *= ((int)b + 1);
+            }
+            return string.Format("{0:x}", i - DateTime.Now.Ticks);
+        }
+        /// <summary>
+        /// If you instead want numbers instead of a string, 
+        /// you can do that to but then you need to go up to 19 characters.
+        /// The following method converts a GUID to an Int64.
+        /// </summary>
+        /// <returns>long: An 64bit uniq number.</returns>
+        public static long GetLongId()
+        {
+         byte[] buffer = Guid.NewGuid().ToByteArray();
+         return BitConverter.ToInt64(buffer, 0);
+        }
         #endregion
     }
 }

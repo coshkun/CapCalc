@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Reflection;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -16,9 +17,13 @@ namespace Luncher
         int eX, eY, eZ, eL, ePic;
 
         private DataSet ds;
+        private DataTable dt;
         private ColorDialog cd;
         private Color pC;
         private string HEXC = string.Empty;
+        private string _ID;
+        private string[] NameArray = new string[999];
+        private int NameIndex = 0;
 
         public frmMain()
         {
@@ -51,20 +56,26 @@ namespace Luncher
             txtColor.Text = ColorTranslator.ToHtml(pC);
 
             // initialize the data table
-            var dt = new DataTable();
+            dt = new DataTable();
             dt.Columns.AddRange(new DataColumn[]{
+                   new DataColumn("ID", typeof(string)),
                    new DataColumn("Name", typeof(string)),
-                   new DataColumn("Long(X)",typeof(float)),
-                   new DataColumn("Height(Y)", typeof(float)),
-                   new DataColumn("Width(Z)",typeof(float)),
+                   new DataColumn("Long",typeof(double)),
+                   new DataColumn("Height", typeof(double)),
+                   new DataColumn("Width",typeof(double)),
                    new DataColumn("Level",typeof(int)),
-                   new DataColumn("Weight", typeof(float)),
-                   new DataColumn("CBM",typeof(float)),
+                   new DataColumn("Weight", typeof(double)),
+                   new DataColumn("CBM",typeof(double)),
                    new DataColumn("Color", typeof(string))
             });
             ds = new DataSet();
             ds.Tables.Add(dt);
             dataGridView1.DataSource = ds.Tables[0];
+            dataGridView1.Columns["ID"].Visible = false;
+            for (int i = 0; i <= 999; i++)
+            {
+                NameArray[i] = "Cargo " + string.Format("{0:000}", i);
+            }
         }
 
         private void CalculateShemaPosition()
@@ -122,23 +133,80 @@ namespace Luncher
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            _ID = Helper.GenerateId();
+            var chk = from myRow in ds.Tables[0].AsEnumerable()
+                      where (string)myRow.Field<string>("ID") == _ID
+                      select new []{ (string)myRow.Field<string>("ID") };// Get ID;
+
+            if (chk.Any()) // if, is there any chance to hit by 13.5 Bilion Lightyears away? :)
+                _ID = Helper.GenerateId();
+
+            if (txtName.Text == string.Empty) { txtName.Text = NameArray[NameIndex]; NameIndex++; }
+            // Check the name on very first time if it is exist before.
+            var chkN = from myRow in ds.Tables[0].AsEnumerable()
+                       where (string)myRow.Field<string>("Name") == txtName.Text
+                       select new[] { (string)myRow.Field<string>("Name") };// Get Name;
+
+            if (chkN.Any()) { txtName.Text = CheckName(txtName.Text); }
+
             ds.Tables[0].Rows.Add(new object[]
             {
+                _ID,
                 txtName.Text,
-                (float)numLong.Value,
-                (float)numHeight.Value,
-                (float)numWidth.Value,
+                (double)numLong.Value,
+                (double)numHeight.Value,
+                (double)numWidth.Value,
                 (int)numLevel.Value,
-                (float)numWeight.Value,
-                    (float)(numLong.Value * numHeight.Value * numWidth.Value),
+                (double)numWeight.Value,
+                    (double)(numLong.Value * numHeight.Value * numWidth.Value),
                 (string) ColorTranslator.ToHtml(cd.Color)
             });
-            
+            dataGridView1.DataSource = ds.Tables[0];
+        }
+        
+        private string _rValue = "";
+        private string CheckName(string NameWhoChecked)
+        {
+            var chkN = from myRow in ds.Tables[0].AsEnumerable()
+                       where (string)myRow.Field<string>("Name") == NameWhoChecked
+                select new[] { (string)myRow.Field<string>("Name") };// Get Name;
+
+            if (chkN.Any()) 
+            {   
+                NameWhoChecked = NameArray[NameIndex]; NameIndex++;
+                CheckName(NameWhoChecked);
+            }
+            if (_rValue == "")
+            {
+                MessageBox.Show("There is a matching cargo with same name. Your new entry added by " 
+                                 + NameWhoChecked);
+                _rValue = NameWhoChecked;
+                return _rValue;
+            }
+            return _rValue;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            DataGridViewRow row = dataGridView1.CurrentRow;
+            string _capturID = row.Cells["ID"].Value.ToString();
 
+            DataRow r= dt.AsEnumerable().Where(x => // Get the selected row from table
+                    x.Field<string>("ID") == _capturID).FirstOrDefault();
+
+            if (txtName.Text == string.Empty) { txtName.Text = NameArray[NameIndex]; NameIndex++; }
+            r.SetField<string>("Name", (string)txtName.Text);
+            r.SetField<double>("Long", (double)numLong.Value);
+            r.SetField<double>("Height", (double)numHeight.Value);
+            r.SetField<double>("Width", (double)numWeight.Value);
+            r.SetField<int>("Level", (int)numLevel.Value);
+            r.SetField<double>("Weight", (double)numWeight.Value);
+            r.SetField<double>("CBM",
+                      (double)(numLong.Value * numHeight.Value * numWeight.Value));
+            if (txtColor.Text == string.Empty) { txtColor.Text = ColorTranslator.ToHtml(cd.Color); }
+            r.SetField<string>("Color", txtColor.Text);
+
+            dataGridView1.DataSource = ds.Tables[0];
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -148,7 +216,50 @@ namespace Luncher
 
         private void btnNew_Click(object sender, EventArgs e)
         {
+            foreach (Control ctrl in this.Controls)
+            {
+                ResetForm(ctrl); 
+            }
+            // Get New Random Color
+            pC = Helper.GetRandomColor(); cd.Color = pC;
+            txtColor.Text = ColorTranslator.ToHtml(pC);
+        }
 
+        private void ResetForm(Control control)
+        {
+            if (control.GetType() == typeof(TextBox))
+            {
+                var ty = control.GetType().GetProperty("Text");
+                ty.SetValue(control, "", null);
+            }
+            if (control.GetType() == typeof(ComboBox))
+            {
+                var ty = control.GetType().GetProperty("Text");
+                ty.SetValue(control, "", null);
+            }
+            if (control.GetType() == typeof(CheckBox))
+            {
+                var ty = control.GetType().GetProperty("Checked");
+                ty.SetValue(control, false, null);
+            }
+            if (control.GetType() == typeof(NumericUpDown))
+            {
+                var ty2 = control.GetType().GetProperty("Value");
+                ty2.SetValue(control, (decimal)0, null);
+            }
+            // Set Static Contols here:
+            if (control.Name == "lbl_X") { lbl_X.Text = "x:"; }
+            if (control.Name == "lbl_Y") { lbl_X.Text = "y:"; }
+            if (control.Name == "lbl_Z") { lbl_X.Text = "z:"; }
+            if (control.Name == "lbl_L") { lbl_X.Text = "Level:"; }
+
+            foreach (Control ctrl in control.Controls)
+            {
+                if (ctrl != null)
+                    ResetForm(ctrl);
+                else
+                    break;
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -159,6 +270,9 @@ namespace Luncher
             if (saveFileDialog.ShowDialog(this) != DialogResult.OK) { return; }
 
             string FileName = saveFileDialog.FileName;
+            if (ds.Tables[0].Rows.Count > 0)
+                ds.Tables[0].WriteXml(FileName, XmlWriteMode.IgnoreSchema);
+            else { MessageBox.Show("No Data Writen, Your Cargo Table is Empty!"); }
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -169,6 +283,36 @@ namespace Luncher
             if (openFileDialog.ShowDialog(this) != DialogResult.OK) { return; }
             
             string FileName = openFileDialog.FileName;
+            ds.Tables[0].Clear();
+            ds.Tables[0].ReadXml(FileName);
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string _capturID = "";
+            DataRow r; // = new DataTable() { }.NewRow();
+            DataGridViewRow row = dataGridView1.CurrentRow;
+
+            if ((row.Cells["ID"].Value) != null)
+            { _capturID = row.Cells["ID"].Value.ToString(); }
+
+            if (dt.AsEnumerable().Where(x => x.Field<string>("ID") == _capturID).Any())
+            {
+                r = dt.AsEnumerable().Where(x => // Get the selected row from table
+                        x.Field<string>("ID") == _capturID).FirstOrDefault();
+            }
+            else { r = dt.NewRow(); }
+
+            var _tmp1 = r.Field<string>("Name"); txtName.Text = (_tmp1 == null)? string.Empty : _tmp1;
+            var _tmp2 = r.Field<object>("Long"); numLong.Value = (_tmp2 == null) ? 0.0m : decimal.Parse(_tmp2.ToString());
+            var _tmp3 = r.Field<object>("Height"); numHeight.Value = (_tmp3 == null) ? 0.0m : decimal.Parse(_tmp3.ToString());
+            var _tmp4 = r.Field<object>("Width"); numWidth.Value = (_tmp4 == null) ? 0.0m : decimal.Parse(_tmp4.ToString());
+            var _tmp5 = r.Field<object>("Level"); numLevel.Value = (_tmp5 == null) ? 0 : int.Parse(_tmp5.ToString());
+            var _tmp6 = r.Field<object>("Weight"); numWeight.Value = (_tmp6 == null) ? 0.0m : decimal.Parse(_tmp6.ToString());
+            // CBM Ignored from table.
+            var _tmp7 = r.Field<string>("Color"); txtColor.Text = (_tmp7 == null) ? string.Empty : (string)_tmp7;
+
+            dataGridView1.DataSource = ds.Tables[0];
         }
 
     }
