@@ -11,7 +11,7 @@ namespace Luncher
 
     public class ContainerInfo
     {
-        public static ContainerInfo  Default = new ContainerInfo("13.6 Semitrailer", 13.60d, 2.40d, 2.80d, 22.0d);
+        public static ContainerInfo  Default = new ContainerInfo("13.6 Semitrailer", 13.60d, 2.80d, 2.40d, 22.0d);
 
         public string Name      { get; private set; }
         public double Long      { get; private set; } // in meter

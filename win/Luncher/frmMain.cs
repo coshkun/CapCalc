@@ -89,7 +89,7 @@ namespace Luncher
             }
 
             // Initialize Konteyner to hold the Max Capacity.
-            Konteyners.Add(new ContainerInfo("13.6 Semitrailer", 13.60d, 2.40d, 2.80d, 22.0d));
+            Konteyners.Add(new ContainerInfo("13.6 Semitrailer", 13.60d, 2.80d, 2.40d, 22.0d));
             cmbConSelector.DataSource = Konteyners.ToArray();
             cmbConSelector.DisplayMember = "Name";
             // var usage = ((ContainerInfo)cmbConSelector.SelectedValue).CBM;
