@@ -25,7 +25,12 @@ namespace Luncher
         private string[] NameArray = new string[1000];
         private int NameIndex = 0;
         private string _rValue = ""; // Lookup variable to make recursive name search
-        private static ContainerInfo Konteyner;
+        private static List<ContainerInfo> Konteyners = new List<ContainerInfo>();
+        private bool isLoaded = false; // this is a regular correction to fix legacy Form Load Eventhandler problem,
+                                       // it always casting twice by windows, and cause the Form_Load() event code execution twice :('
+
+        private string summary = ""; // Lookup variable for InfoTips
+
 
         public frmMain()
         {
@@ -84,7 +89,18 @@ namespace Luncher
             }
 
             // Initialize Konteyner to hold the Max Capacity.
-            Konteyner = new ContainerInfo("13.6 Semitrailer", 13.60d, 2.40d, 2.80d);
+            Konteyners.Add(new ContainerInfo("13.6 Semitrailer", 13.60d, 2.40d, 2.80d, 22.0d));
+            cmbConSelector.DataSource = Konteyners.ToArray();
+            cmbConSelector.DisplayMember = "Name";
+            // var usage = ((ContainerInfo)cmbConSelector.SelectedValue).CBM;
+
+            // Create ToolTip Handler
+            InfoTips.ToolTipIcon = ToolTipIcon.Info;
+            InfoTips.ToolTipTitle = "Info:";
+            InfoTips.SetToolTip(cmbConSelector, summary);
+
+            // Note this flag must be the last event line! it is a Legacy System Fix for Indexy Controls
+            isLoaded = true;
         }
 
         private void CalculateShemaPosition()
@@ -115,8 +131,7 @@ namespace Luncher
 
             //var snc = from eleman in xdata select new { Deger = eleman.ToString() };
             //dataGridView1.DataSource = snc.ToList();
-            var test = Konteyner.Name + Konteyner.Long.ToString() + Konteyner.Height.ToString() + Konteyner.Width.ToString() + Konteyner.CBM.ToString();
-            MessageBox.Show(test);
+            
         }
 
         private void btnColor_Click(object sender, EventArgs e)
@@ -140,6 +155,22 @@ namespace Luncher
             
             btnColor.BackColor = pC;
             cd.Color = pC;
+        }
+
+        private void cmbConSelector_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            numLong.Maximum = (decimal)((ContainerInfo)cmbConSelector.SelectedValue).Long *100;
+            numHeight.Maximum = (decimal)((ContainerInfo)cmbConSelector.SelectedValue).Height *100;
+            numWidth.Maximum = (decimal)((ContainerInfo)cmbConSelector.SelectedValue).Width *100;
+            numWeight.Maximum = (decimal)((ContainerInfo)cmbConSelector.SelectedValue).Weight *1000;
+
+            summary = "Long: " + ((ContainerInfo)cmbConSelector.SelectedValue).Long.ToString() + "m \n"
+                            + "Height: " + ((ContainerInfo)cmbConSelector.SelectedValue).Height.ToString() + "m \n"
+                            + "Width: " + ((ContainerInfo)cmbConSelector.SelectedValue).Width.ToString() + "m \n"
+                            + "Capacity: " + ((ContainerInfo)cmbConSelector.SelectedValue).CBM.ToString() + "m \n"
+                            + "Payload: " + ((ContainerInfo)cmbConSelector.SelectedValue).Weight.ToString() + " tons";
+            //if(this.isLoaded)
+                InfoTips.SetToolTip(cmbConSelector, summary);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -217,12 +248,29 @@ namespace Luncher
             if (txtColor.Text == string.Empty) { txtColor.Text = ColorTranslator.ToHtml(cd.Color); }
             r.SetField<string>("Color", txtColor.Text);
 
-            dataGridView1.DataSource = ds.Tables[0];
+            dataGridView1.DataSource = ds.Tables[0]; // Refresh the grid
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            foreach (DataGridViewRow satır in dataGridView1.SelectedRows)
+            {
+                if (satır != null)
+                {
+                    // Fix: Null Exception now handled :P
+                    string _selectedID = ((satır.Cells["ID"].Value)!=null) ? satır.Cells["ID"].Value.ToString() : "";
 
+                    if (_selectedID != "")
+                    {
+                        DataRow r = dt.AsEnumerable().Where(x => // Get the relevant selected row from table
+                         x.Field<string>("ID") == _selectedID).FirstOrDefault();
+
+                        ds.Tables[0].Rows.Remove(r);
+                    }
+                }
+            }
+
+            dataGridView1.DataSource = ds.Tables[0]; // Refresh the grid
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -243,11 +291,11 @@ namespace Luncher
                 var ty = control.GetType().GetProperty("Text");
                 ty.SetValue(control, "", null);
             }
-            if (control.GetType() == typeof(ComboBox))
-            {
-                var ty = control.GetType().GetProperty("Text");
-                ty.SetValue(control, "", null);
-            }
+            //if (control.GetType() == typeof(ComboBox))
+            //{
+            //    var ty = control.GetType().GetProperty("Text");
+            //    ty.SetValue(control, "", null);
+            //}
             if (control.GetType() == typeof(CheckBox))
             {
                 var ty = control.GetType().GetProperty("Checked");
@@ -326,5 +374,31 @@ namespace Luncher
             dataGridView1.DataSource = ds.Tables[0];
         }
 
+        #region NumericFilters
+        private void numLong_ValueChanged(object sender, EventArgs e)
+        {
+            lbl_X.Text = "x: " + numLong.Value.ToString();
+        }
+
+        private void numHeight_ValueChanged(object sender, EventArgs e)
+        {
+            lbl_Y.Text = "y: " + numHeight.Value.ToString();
+        }
+
+        private void numWidth_ValueChanged(object sender, EventArgs e)
+        {
+            lbl_Z.Text = "z: " + numWidth.Value.ToString();
+        }
+
+        private void numLevel_ValueChanged(object sender, EventArgs e)
+        {
+            lbl_L.Text = "Level: " + numLevel.Value.ToString();
+        }
+
+        private void numWeight_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
     }
 }

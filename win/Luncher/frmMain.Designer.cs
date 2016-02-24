@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.grpSelectedCargo = new System.Windows.Forms.GroupBox();
+            this.cmbConSelector = new System.Windows.Forms.ComboBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -42,9 +44,14 @@
             this.txtColor = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblColor = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.lblWeight = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.lblZ = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.lblX = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblLevel = new System.Windows.Forms.Label();
             this.lblY = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
@@ -60,6 +67,7 @@
             this.btnLoad = new System.Windows.Forms.Button();
             this.btnCalculate = new System.Windows.Forms.Button();
             this.sc1 = new System.Windows.Forms.SplitContainer();
+            this.InfoTips = new System.Windows.Forms.ToolTip(this.components);
             this.grpSelectedCargo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numWeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLevel)).BeginInit();
@@ -80,6 +88,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpSelectedCargo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.grpSelectedCargo.Controls.Add(this.cmbConSelector);
             this.grpSelectedCargo.Controls.Add(this.btnDelete);
             this.grpSelectedCargo.Controls.Add(this.btnUpdate);
             this.grpSelectedCargo.Controls.Add(this.btnAdd);
@@ -93,9 +102,14 @@
             this.grpSelectedCargo.Controls.Add(this.txtColor);
             this.grpSelectedCargo.Controls.Add(this.txtName);
             this.grpSelectedCargo.Controls.Add(this.lblColor);
+            this.grpSelectedCargo.Controls.Add(this.label5);
             this.grpSelectedCargo.Controls.Add(this.lblWeight);
+            this.grpSelectedCargo.Controls.Add(this.label4);
             this.grpSelectedCargo.Controls.Add(this.lblZ);
+            this.grpSelectedCargo.Controls.Add(this.label3);
+            this.grpSelectedCargo.Controls.Add(this.label2);
             this.grpSelectedCargo.Controls.Add(this.lblX);
+            this.grpSelectedCargo.Controls.Add(this.label1);
             this.grpSelectedCargo.Controls.Add(this.lblLevel);
             this.grpSelectedCargo.Controls.Add(this.lblY);
             this.grpSelectedCargo.Controls.Add(this.lblName);
@@ -112,13 +126,23 @@
             this.grpSelectedCargo.Text = "Selected Cargo";
             this.grpSelectedCargo.Resize += new System.EventHandler(this.grpSelectedCargo_Resize);
             // 
+            // cmbConSelector
+            // 
+            this.cmbConSelector.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbConSelector.FormattingEnabled = true;
+            this.cmbConSelector.Location = new System.Drawing.Point(456, 15);
+            this.cmbConSelector.Name = "cmbConSelector";
+            this.cmbConSelector.Size = new System.Drawing.Size(150, 21);
+            this.cmbConSelector.TabIndex = 12;
+            this.cmbConSelector.SelectedIndexChanged += new System.EventHandler(this.cmbConSelector_SelectedIndexChanged);
+            // 
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDelete.Location = new System.Drawing.Point(160, 177);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(50, 20);
-            this.btnDelete.TabIndex = 4;
+            this.btnDelete.TabIndex = 11;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -129,7 +153,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(100, 177);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(53, 20);
-            this.btnUpdate.TabIndex = 4;
+            this.btnUpdate.TabIndex = 10;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
@@ -140,7 +164,7 @@
             this.btnAdd.Location = new System.Drawing.Point(53, 177);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(40, 20);
-            this.btnAdd.TabIndex = 4;
+            this.btnAdd.TabIndex = 9;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -151,7 +175,7 @@
             this.btnNew.Location = new System.Drawing.Point(6, 177);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(40, 20);
-            this.btnNew.TabIndex = 4;
+            this.btnNew.TabIndex = 0;
             this.btnNew.Text = "New";
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
@@ -161,80 +185,65 @@
             this.btnColor.Location = new System.Drawing.Point(53, 156);
             this.btnColor.Name = "btnColor";
             this.btnColor.Size = new System.Drawing.Size(20, 20);
-            this.btnColor.TabIndex = 9;
+            this.btnColor.TabIndex = 7;
             this.btnColor.UseVisualStyleBackColor = true;
             this.btnColor.Click += new System.EventHandler(this.btnColor_Click);
             // 
             // numWeight
             // 
             this.numWeight.DecimalPlaces = 1;
-            this.numWeight.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.numWeight.Location = new System.Drawing.Point(53, 132);
             this.numWeight.Name = "numWeight";
-            this.numWeight.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.numWeight.Size = new System.Drawing.Size(80, 20);
-            this.numWeight.TabIndex = 8;
+            this.numWeight.TabIndex = 6;
+            this.numWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numWeight.ValueChanged += new System.EventHandler(this.numWeight_ValueChanged);
             // 
             // numLevel
             // 
             this.numLevel.Location = new System.Drawing.Point(53, 109);
             this.numLevel.Name = "numLevel";
-            this.numLevel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.numLevel.Size = new System.Drawing.Size(80, 20);
-            this.numLevel.TabIndex = 8;
+            this.numLevel.TabIndex = 5;
+            this.numLevel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numLevel.ValueChanged += new System.EventHandler(this.numLevel_ValueChanged);
             // 
             // numWidth
             // 
             this.numWidth.DecimalPlaces = 1;
-            this.numWidth.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.numWidth.Location = new System.Drawing.Point(53, 86);
             this.numWidth.Name = "numWidth";
-            this.numWidth.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.numWidth.Size = new System.Drawing.Size(80, 20);
-            this.numWidth.TabIndex = 8;
+            this.numWidth.TabIndex = 4;
+            this.numWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numWidth.ValueChanged += new System.EventHandler(this.numWidth_ValueChanged);
             // 
             // numHeight
             // 
             this.numHeight.DecimalPlaces = 1;
-            this.numHeight.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.numHeight.Location = new System.Drawing.Point(53, 63);
             this.numHeight.Name = "numHeight";
-            this.numHeight.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.numHeight.Size = new System.Drawing.Size(80, 20);
-            this.numHeight.TabIndex = 8;
+            this.numHeight.TabIndex = 3;
+            this.numHeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numHeight.ValueChanged += new System.EventHandler(this.numHeight_ValueChanged);
             // 
             // numLong
             // 
             this.numLong.DecimalPlaces = 1;
-            this.numLong.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.numLong.Location = new System.Drawing.Point(53, 40);
             this.numLong.Name = "numLong";
-            this.numLong.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.numLong.Size = new System.Drawing.Size(80, 20);
-            this.numLong.TabIndex = 8;
+            this.numLong.TabIndex = 2;
+            this.numLong.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.numLong.ValueChanged += new System.EventHandler(this.numLong_ValueChanged);
             // 
             // txtColor
             // 
             this.txtColor.Location = new System.Drawing.Point(79, 156);
             this.txtColor.Name = "txtColor";
             this.txtColor.Size = new System.Drawing.Size(54, 20);
-            this.txtColor.TabIndex = 7;
+            this.txtColor.TabIndex = 8;
             this.txtColor.Text = "#";
             this.txtColor.TextChanged += new System.EventHandler(this.txtColor_TextChanged);
             // 
@@ -243,7 +252,7 @@
             this.txtName.Location = new System.Drawing.Point(53, 16);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(80, 20);
-            this.txtName.TabIndex = 7;
+            this.txtName.TabIndex = 1;
             // 
             // lblColor
             // 
@@ -254,6 +263,15 @@
             this.lblColor.TabIndex = 6;
             this.lblColor.Text = "Color";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(135, 135);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(19, 13);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "kg";
+            // 
             // lblWeight
             // 
             this.lblWeight.AutoSize = true;
@@ -262,6 +280,15 @@
             this.lblWeight.Size = new System.Drawing.Size(41, 13);
             this.lblWeight.TabIndex = 6;
             this.lblWeight.Text = "Weight";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(135, 89);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(21, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "cm";
             // 
             // lblZ
             // 
@@ -272,6 +299,24 @@
             this.lblZ.TabIndex = 6;
             this.lblZ.Text = "Width";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(135, 43);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(21, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "cm";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(135, 112);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(24, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "pcs";
+            // 
             // lblX
             // 
             this.lblX.AutoSize = true;
@@ -280,6 +325,15 @@
             this.lblX.Size = new System.Drawing.Size(31, 13);
             this.lblX.TabIndex = 6;
             this.lblX.Text = "Long";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(135, 66);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(21, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "cm";
             // 
             // lblLevel
             // 
@@ -360,19 +414,20 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(6, 3);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView1.RowHeadersWidth = 10;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(612, 197);
-            this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // flowLayoutPanel1
@@ -388,7 +443,7 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(624, 25);
-            this.flowLayoutPanel1.TabIndex = 2;
+            this.flowLayoutPanel1.TabIndex = 0;
             // 
             // btnExit
             // 
@@ -396,7 +451,7 @@
             this.btnExit.Margin = new System.Windows.Forms.Padding(0);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(75, 23);
-            this.btnExit.TabIndex = 0;
+            this.btnExit.TabIndex = 3;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -407,7 +462,7 @@
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 0, 12, 0);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 23);
-            this.btnSave.TabIndex = 0;
+            this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save File";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -429,7 +484,7 @@
             this.btnCalculate.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.btnCalculate.Name = "btnCalculate";
             this.btnCalculate.Size = new System.Drawing.Size(100, 23);
-            this.btnCalculate.TabIndex = 1;
+            this.btnCalculate.TabIndex = 0;
             this.btnCalculate.Text = "Calculate Grid";
             this.btnCalculate.UseVisualStyleBackColor = true;
             this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
@@ -452,6 +507,12 @@
             this.sc1.Size = new System.Drawing.Size(624, 417);
             this.sc1.SplitterDistance = 207;
             this.sc1.TabIndex = 3;
+            // 
+            // InfoTips
+            // 
+            this.InfoTips.AutoPopDelay = 15000;
+            this.InfoTips.InitialDelay = 500;
+            this.InfoTips.ReshowDelay = 200;
             // 
             // frmMain
             // 
@@ -515,6 +576,13 @@
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ComboBox cmbConSelector;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ToolTip InfoTips;
     }
 }
 
