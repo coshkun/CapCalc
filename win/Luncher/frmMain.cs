@@ -25,6 +25,7 @@ namespace Luncher
         private string[] NameArray = new string[1000];
         private int NameIndex = 0;
         private string _rValue = ""; // Lookup variable to make recursive name search
+        private static ContainerInfo Konteyner;
 
         public frmMain()
         {
@@ -71,12 +72,19 @@ namespace Luncher
             });
             ds = new DataSet();
             ds.Tables.Add(dt);
+
+            // Refresh Grid
             dataGridView1.DataSource = ds.Tables[0];
             dataGridView1.Columns["ID"].Visible = false;
+
+            // Initialize Inteli Naming Array,
             for (int i = 0; i < 1000; i++)
             {
                 NameArray[i] = "Cargo " + string.Format("{0:000}", i);
             }
+
+            // Initialize Konteyner to hold the Max Capacity.
+            Konteyner = new ContainerInfo("13.6 Semitrailer", 13.60d, 2.40d, 2.80d);
         }
 
         private void CalculateShemaPosition()
@@ -107,6 +115,8 @@ namespace Luncher
 
             //var snc = from eleman in xdata select new { Deger = eleman.ToString() };
             //dataGridView1.DataSource = snc.ToList();
+            var test = Konteyner.Name + Konteyner.Long.ToString() + Konteyner.Height.ToString() + Konteyner.Width.ToString() + Konteyner.CBM.ToString();
+            MessageBox.Show(test);
         }
 
         private void btnColor_Click(object sender, EventArgs e)
@@ -163,7 +173,7 @@ namespace Luncher
                     (double)(numLong.Value * numHeight.Value * numWidth.Value),
                 (string) ColorTranslator.ToHtml(cd.Color)
             });
-            dataGridView1.DataSource = ds.Tables[0];
+            dataGridView1.DataSource = ds.Tables[0]; // Refresh Grid
         }
         
         private string CheckName(string NameWhoChecked)
