@@ -68,6 +68,8 @@
             this.btnCalculate = new System.Windows.Forms.Button();
             this.sc1 = new System.Windows.Forms.SplitContainer();
             this.InfoTips = new System.Windows.Forms.ToolTip(this.components);
+            this.cmbOffset = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.grpSelectedCargo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numWeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLevel)).BeginInit();
@@ -88,6 +90,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpSelectedCargo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.grpSelectedCargo.Controls.Add(this.label6);
+            this.grpSelectedCargo.Controls.Add(this.cmbOffset);
             this.grpSelectedCargo.Controls.Add(this.cmbConSelector);
             this.grpSelectedCargo.Controls.Add(this.btnDelete);
             this.grpSelectedCargo.Controls.Add(this.btnUpdate);
@@ -514,6 +518,28 @@
             this.InfoTips.InitialDelay = 500;
             this.InfoTips.ReshowDelay = 200;
             // 
+            // cmbOffset
+            // 
+            this.cmbOffset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbOffset.FormattingEnabled = true;
+            this.cmbOffset.Location = new System.Drawing.Point(506, 42);
+            this.cmbOffset.Name = "cmbOffset";
+            this.cmbOffset.Size = new System.Drawing.Size(100, 21);
+            this.cmbOffset.TabIndex = 13;
+            this.cmbOffset.SelectedIndexChanged += new System.EventHandler(this.cmbOffset_SelectedIndexChanged);
+            this.cmbOffset.MouseEnter += new System.EventHandler(this.cmbOffset_MouseEnter);
+            this.cmbOffset.MouseLeave += new System.EventHandler(this.cmbOffset_MouseLeave);
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(455, 45);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(45, 13);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "G.Base:";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -583,6 +609,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolTip InfoTips;
+        private System.Windows.Forms.ComboBox cmbOffset;
+        private System.Windows.Forms.Label label6;
     }
 }
 

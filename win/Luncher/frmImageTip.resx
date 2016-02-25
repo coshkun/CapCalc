@@ -117,41 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cargo_picker" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cargo_picker.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="cargo_picker_w10" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cargo_picker_w10.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="go_bottom_center" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\go_bottom_center.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="go_bottom_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\go_bottom_left.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="go_bottom_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\go_bottom_right.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="go_middle_center" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\go_middle_center.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="go_middle_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\go_middle_left.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="go_middle_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\go_middle_right.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="go_none" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\go_none.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="go_top_center" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\go_top_center.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="go_top_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\go_top_left.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="go_top_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\go_top_right.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
+  <metadata name="lbl_ImageTipTitle.Locked" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

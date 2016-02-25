@@ -710,7 +710,6 @@ namespace Luncher
         }
         #endregion
 
-
         #region Miscellaneous Utilities
         public static int FindMax(int[] x)
         {
@@ -854,5 +853,9 @@ namespace Luncher
          return BitConverter.ToInt64(buffer, 0);
         }
         #endregion
+        //Special Algorithyms
+        //#region Binary Tree
+        
+        //#endregion
     }
 }

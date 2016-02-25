@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Management;
 
 namespace Luncher
 {
@@ -30,6 +31,7 @@ namespace Luncher
                                        // it always casting twice by windows, and cause the Form_Load() event code execution twice :('
 
         private string summary = ""; // Lookup variable for InfoTips
+        private frmImageTip frmOffsetHelper;
 
 
         public frmMain()
@@ -55,6 +57,10 @@ namespace Luncher
             dX = offset.X - x.X; dY = offset.X - y.X; dZ = offset.X - z.X; dL = offset.X - L.X;
             eX = offset.Y - x.Y; eY = offset.Y - y.Y; eZ = offset.Y - z.Y; eL = offset.Y - L.Y;
             dPic = offset.X - picBox.X; ePic = offset.Y - picBox.Y;
+
+            // initialize the shematic in accordance of platform
+            string rslt = GetOSFriendlyName();
+            if (rslt.Contains("Windows 10")) { pBox.Image = Properties.Resources.cargo_picker_w10; }
 
             // initialize the Color Picker
             cd = new ColorDialog();
@@ -99,6 +105,15 @@ namespace Luncher
             InfoTips.ToolTipTitle = "Info:";
             InfoTips.SetToolTip(cmbConSelector, summary);
 
+            // Fill the Offset Selector
+            cmbOffset.Items.Add(@"Top Left"); cmbOffset.Items.Add(@"Top Center"); cmbOffset.Items.Add(@"Top Right");
+            cmbOffset.Items.Add(@"Middle Left"); cmbOffset.Items.Add(@"Middle Center"); cmbOffset.Items.Add(@"Middle Right");
+            cmbOffset.Items.Add(@"Bottom Left"); cmbOffset.Items.Add(@"Bottom Center"); cmbOffset.Items.Add(@"Bottom Right");
+            // initialize an instance of Selector Helper
+            frmOffsetHelper = new frmImageTip(cmbOffset);
+            frmOffsetHelper.Image = new Bitmap(Properties.Resources.go_none);
+            cmbOffset.SelectedItem = @"Middle Left";
+
             // Note this flag must be the last event line! it is a Legacy System Fix for Indexy Controls
             isLoaded = true;
         }
@@ -131,7 +146,6 @@ namespace Luncher
 
             //var snc = from eleman in xdata select new { Deger = eleman.ToString() };
             //dataGridView1.DataSource = snc.ToList();
-            
         }
 
         private void btnColor_Click(object sender, EventArgs e)
@@ -400,5 +414,69 @@ namespace Luncher
 
         }
         #endregion
+
+        public static string GetOSFriendlyName()
+        {
+            string result = string.Empty;
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT Caption FROM Win32_OperatingSystem");
+            foreach (ManagementObject os in searcher.Get())
+            {
+                result = os["Caption"].ToString();
+                break;
+            }
+            return result;
+        }
+
+        private void cmbOffset_MouseEnter(object sender, EventArgs e)
+        {
+            frmOffsetHelper.Location = new Point(cmbOffset.PointToScreen(Point.Empty).X - (frmOffsetHelper.Width - cmbOffset.Width),
+                                                             cmbOffset.PointToScreen(Point.Empty).Y + 25);
+            frmOffsetHelper.Show();
+        }
+
+        private void cmbOffset_MouseLeave(object sender, EventArgs e)
+        {
+            frmOffsetHelper.Hide();
+        }
+
+        private void cmbOffset_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch ((string)cmbOffset.SelectedItem)
+            {
+                case "":
+                    frmOffsetHelper.Image = Properties.Resources.go_none;
+                    break;
+                case "Top Left":
+                    frmOffsetHelper.Image = Properties.Resources.go_top_left;
+                    break;
+                case "Top Center":
+                    frmOffsetHelper.Image = Properties.Resources.go_top_center;
+                    break;
+                case "Top Right":
+                    frmOffsetHelper.Image = Properties.Resources.go_top_right;
+                    break;
+                case "Middle Left":
+                    frmOffsetHelper.Image = Properties.Resources.go_middle_left;
+                    break;
+                case "Middle Center":
+                    frmOffsetHelper.Image = Properties.Resources.go_middle_center;
+                    break;
+                case "Middle Right":
+                    frmOffsetHelper.Image = Properties.Resources.go_middle_right;
+                    break;
+                case "Bottom Left":
+                    frmOffsetHelper.Image = Properties.Resources.go_bottom_left;
+                    break;
+                case "Bottom Center":
+                    frmOffsetHelper.Image = Properties.Resources.go_bottom_center;
+                    break;
+                case "Bottom Right":
+                    frmOffsetHelper.Image = Properties.Resources.go_bottom_right;
+                    break;
+                default:
+                    frmOffsetHelper.Image = Properties.Resources.go_none;
+                    break;
+            }
+        }
     }
 }
