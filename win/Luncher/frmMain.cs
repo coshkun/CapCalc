@@ -95,7 +95,7 @@ namespace Luncher
             }
 
             // Initialize Konteyner to hold the Max Capacity.
-            Konteyners.Add(new ContainerInfo("13.6 Semitrailer", 13.60d, 2.80d, 2.40d, 22.0d));
+            Konteyners.Add(new ContainerInfo("13.6 Semitrailer", 1360, 280, 240, 22000));
             cmbConSelector.DataSource = Konteyners.ToArray();
             cmbConSelector.DisplayMember = "Name";
             // var usage = ((ContainerInfo)cmbConSelector.SelectedValue).CBM;
@@ -136,16 +136,15 @@ namespace Luncher
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-            // int[] test = { 1,3,2,5,4,7,34,5,76,11,38,28,0,9,2};
+            /* ***********************************
+             * CAPCALC ALGORITHYM achieved by Rectgangels 
+             * to hold the cargo size and positions in its container
+             * 
+             * 
+             * *********************************** */
 
-            //Random rdn = new Random(2000000);
-            //int[] xdata = new int[2000000];
-            //Helper.MixDataUp(ref xdata, rdn); //Randomize data to be searched
-
-            //Helper.QuickSort(ref xdata);
-
-            //var snc = from eleman in xdata select new { Deger = eleman.ToString() };
-            //dataGridView1.DataSource = snc.ToList();
+            ContainerMatrix Ambar = new ContainerMatrix(Konteyners[0]);
+            
         }
 
         private void btnColor_Click(object sender, EventArgs e)
@@ -173,16 +172,16 @@ namespace Luncher
 
         private void cmbConSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            numLong.Maximum = (decimal)((ContainerInfo)cmbConSelector.SelectedValue).Long *100;
-            numHeight.Maximum = (decimal)((ContainerInfo)cmbConSelector.SelectedValue).Height *100;
-            numWidth.Maximum = (decimal)((ContainerInfo)cmbConSelector.SelectedValue).Width *100;
-            numWeight.Maximum = (decimal)((ContainerInfo)cmbConSelector.SelectedValue).Weight *1000;
+            numLong.Maximum = (decimal)((ContainerInfo)cmbConSelector.SelectedValue).Long;
+            numHeight.Maximum = (decimal)((ContainerInfo)cmbConSelector.SelectedValue).Height;
+            numWidth.Maximum = (decimal)((ContainerInfo)cmbConSelector.SelectedValue).Width;
+            numWeight.Maximum = (decimal)((ContainerInfo)cmbConSelector.SelectedValue).Weight;
 
-            summary = "Long: " + ((ContainerInfo)cmbConSelector.SelectedValue).Long.ToString() + "m \n"
-                            + "Height: " + ((ContainerInfo)cmbConSelector.SelectedValue).Height.ToString() + "m \n"
-                            + "Width: " + ((ContainerInfo)cmbConSelector.SelectedValue).Width.ToString() + "m \n"
-                            + "Capacity: " + ((ContainerInfo)cmbConSelector.SelectedValue).CBM.ToString() + "m \n"
-                            + "Payload: " + ((ContainerInfo)cmbConSelector.SelectedValue).Weight.ToString() + " tons";
+            summary = "Long: " + (((ContainerInfo)cmbConSelector.SelectedValue).Long / 100).ToString() + "m \n"
+                            + "Height: " + (((ContainerInfo)cmbConSelector.SelectedValue).Height / 100).ToString() + "m \n"
+                            + "Width: " + (((ContainerInfo)cmbConSelector.SelectedValue).Width / 100).ToString() + "m \n"
+                            + "Capacity: " + (((ContainerInfo)cmbConSelector.SelectedValue).CBM / 1000000).ToString() + "m3 \n"
+                            + "Payload: " + (((ContainerInfo)cmbConSelector.SelectedValue).Weight / 1000).ToString() + " tons";
             //if(this.isLoaded)
                 InfoTips.SetToolTip(cmbConSelector, summary);
         }
