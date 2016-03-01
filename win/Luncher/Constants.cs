@@ -14,12 +14,12 @@ namespace Luncher
     {
         public static ContainerInfo  Default = new ContainerInfo("13.6 Semitrailer", 13.60d, 2.80d, 2.40d, 22.0d);
 
-        public string Name      { get; private set; }
-        public double Long      { get; private set; } // in meter
-        public double Height    { get; private set; } // in meter
-        public double Width     { get; private set; } // in meter
-        public double CBM       { get { return _getCBM(); } private set { } } // in cubic meter
-        public double SQR       { get { return _getSQR(); } private set { } } // in square meter
+        public string Name      { get; protected set; }
+        public double Long      { get; protected set; } // in meter
+        public double Height    { get; protected set; } // in meter
+        public double Width     { get; protected set; } // in meter
+        public double CBM       { get { return _getCBM(); } protected set { } } // in cubic meter
+        public double SQR       { get { return _getSQR(); } protected set { } } // in square meter
         public double Weight    { get; set; } // in tons
 
         //constructor (can be public or private depending on your needs)
@@ -227,6 +227,48 @@ namespace Luncher
                     data[i, j] = new CM2();
                 }
             }
+        }
+    }
+
+    public class CargoInfo
+    {
+        public static CargoInfo Default = new CargoInfo(string.Empty, 0d, 0d, 0d, 0d);
+
+        bool isLoaded = false;
+        Rectangle space = new Rectangle();
+
+        public string Name      { get; set; }
+        public double Long      { get; set; } // in meter
+        public double Height    { get; set; } // in meter
+        public double Width     { get; set; } // in meter
+        public double CBM       { get { return _getCBM(); } private set { } } // in cubic meter
+        public double SQR       { get { return _getSQR(); } private set { } } // in square meter
+        public double Weight    { get; set; } // in tons
+
+        public bool IsLoaded    { get { return isLoaded; } set { isLoaded = value; } }
+        public Rectangle Space  { get { return space; } set { space = value; } }
+
+        public CargoInfo() { }
+        public CargoInfo(string Name, double Long, double Height, double Width, double Weight)
+        { this.Name = Name; this.Long = Long; this.Height = Height; this.Width = Width; this.Weight = Weight;
+        SetPosition(0,0); }
+        public CargoInfo(string Name, double Long, double Height, double Width, double Weight, int x, int y)
+        { this.Name = Name; this.Long = Long; this.Height = Height; this.Width = Width; this.Weight = Weight;
+            SetPosition(x, y); }
+
+        public void SetPosition(int x, int y)
+        {
+            this.space = new Rectangle(x, y, (int)this.Long, (int)this.Width);
+        }
+
+        private double _getCBM()
+        {
+            return (this.Long * this.Height * this.Width);
+        }
+
+        private double _getSQR()
+        {
+            return (this.Long * this.Width);
         }
     }
 
