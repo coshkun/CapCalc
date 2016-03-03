@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,6 +37,10 @@ namespace Luncher
         public static void QuickSort(ref string[] x)
         {
             qs(x, 0, x.Length - 1);
+        }
+        public static void QuickSort(ref object[] x, string NameOfNumericPropertyToSort)
+        {
+            qs(x, 0, x.Length - 1, NameOfNumericPropertyToSort);
         }
 
         private static void qs(int[] x, int left, int right)
@@ -193,6 +198,42 @@ namespace Luncher
 
             if (left < j) qs(x, left, j);
             if (i < right) qs(x, i, right);
+        }
+        private static void qs(object[] x, int left, int right, string NameOfNumericPropertyToSort)
+        {
+            int i, j;
+            object pivot, temp;
+            string _property = NameOfNumericPropertyToSort;
+
+            i = left;
+            j = right;
+            
+            pivot = x[(left + right) / 2].GetType().GetProperty(_property).GetValue(x[(left + right) / 2],null);
+            // Type ty = pivot.GetType();  // No Need this anymore, it already works as is :)
+            
+
+            do
+            {
+                //var chk_i = x[i].GetType().GetProperty(_property).GetValue(x[i], null);
+                //var chk_j = x[j].GetType().GetProperty(_property).GetValue(x[j], null);
+                while ((Convert.ToDouble(
+                        x[i].GetType().GetProperty(_property).GetValue(x[i], null)
+                        ) < Convert.ToDouble(pivot)) && (i < right)) i++;
+                while ((Convert.ToDouble(pivot) < Convert.ToDouble(
+                        x[j].GetType().GetProperty(_property).GetValue(x[j], null)
+                        )) && (j > left)) j--;
+
+                if (i <= j)
+                {
+                    temp = x[i];
+                    x[i] = x[j];
+                    x[j] = temp; // No neeed to convert back to original type, object type can be transfered
+                    i++; j--;
+                }
+            } while (i <= j);
+
+            if (left < j) qs(x, left, j,_property);
+            if (i < right) qs(x, i, right,_property);
         }
         #endregion
 

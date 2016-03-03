@@ -140,11 +140,104 @@ namespace Luncher
              * CAPCALC ALGORITHYM achieved by Rectgangels 
              * to hold the cargo size and positions in its container
              * 
+             * Not:
+             * the space property of CargoInfo class uses System.Drawing.Rectangel item
+             * to hold the position and floor area of cargo. Pls, take attention while you
+             * assigning new values as;
+             * 
+             * Cargo.Space = new Rectangle(x,y, m,n);
+             * x => Left of Cargo in Container space
+             * y => Top of Cargo in Container space
+             * m => is the Long  (x dimention of cargo floor area while you look from top)
+             * n => is the Width (y dimention of cargo floor area while you look from top)
              * 
              * *********************************** */
+            var secim = (ContainerInfo)cmbConSelector.SelectedItem;
+            ContainerMatrix Ambar = new ContainerMatrix(secim);
 
-            ContainerMatrix Ambar = new ContainerMatrix(Konteyners[0]);
-            
+            CargoInfo[] Kargolar;
+            // Read the cargoes from data table
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                Kargolar = new CargoInfo[ds.Tables[0].Rows.Count]; // size the cargo list
+                
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    var crg = new CargoInfo();
+                    crg.Name = ds.Tables[0].Rows[i].Field<string>("Name");
+                    crg.Long = ds.Tables[0].Rows[i].Field<double>("Long");
+                    crg.Width = ds.Tables[0].Rows[i].Field<double>("Width");
+                    crg.Height = ds.Tables[0].Rows[i].Field<double>("Height");
+                    crg.Weight = ds.Tables[0].Rows[i].Field<double>("Weight");
+                    crg.Level  = ds.Tables[0].Rows[i].Field<int>("Level");
+
+                    Kargolar[i] = crg;
+                }
+
+                // Now Sort them based on CBM
+                object[] sort = new object[Kargolar.Length];
+                for (int i = 0; i < sort.Length; i++)
+                {
+                    sort[i] = Kargolar[i];
+                }
+
+                Helper.QuickSort(ref sort, "CBM");
+                
+                // Now check the Gravity Ofset to strat writing in container
+                // (do that later, lets say "Top Left" for now)
+
+                for (int i = sort.Length -1 ; i >= 0; i--)  // Big to Small
+                {
+                    CargoInfo crg = (CargoInfo)sort[i];
+                    if (Ambar.StartIndexes.Count > 0)
+                    {
+                        Ambar.AddCargo(crg, Ambar.CurrentIndex);
+                    }
+                }
+
+                // Try to take a snapshot for debug purpose
+                Image image = (Image) (new Bitmap(Ambar.Space.Height, Ambar.Space.Width));
+
+                using (Graphics g = Graphics.FromImage(image))
+                {
+                    // Modify the image using g here... 
+                    // Create a brush with an alpha value and use the g.FillRectangle function
+                    Color customColor = Color.FromArgb(75, Color.Green);
+                    Color indexColor = Color.FromArgb(100, Color.Red);
+                    SolidBrush shadowBrush = new SolidBrush(customColor);
+                    SolidBrush indexBrush = new SolidBrush(indexColor);
+                    for (int i = 0; i < Ambar.Space.Width - 1; i++)
+                    {
+                        for (int j = 0; j < Ambar.Space.Height - 1; j++)
+                        {
+                            var rec = new RectangleF((float)i, (float)j, 1f, 1f);
+
+                            if (Ambar.Data[i, j].IsLoaded)
+                            {
+                                g.FillRectangles(shadowBrush, new RectangleF[] { rec });
+                            }
+                            if (Ambar.Data[i, j].StartIndex)
+                            {
+                                g.FillRectangles(indexBrush, new RectangleF[] { rec });
+                            }
+                            // if (i == 0 && j == 500) { System.Diagnostics.Debugger.Break(); }
+                        }
+                    }
+                }
+                // Now display it
+                //var frmDisplay = new frmImageTip();
+                //frmDisplay.Image = image;
+                //frmDisplay.Show();
+                var Disp = new Form();
+                var pb = new PictureBox() {  }; // Image = image, Dock = DockStyle.Fill, Parent = Disp
+                pb.Image = image; pb.Dock = DockStyle.None; pb.Parent = Disp; 
+                pb.Size = new Size(Ambar.Space.Height, Ambar.Space.Width);
+                Disp.Size = new Size(Ambar.Space.Height, Ambar.Space.Width);
+                Disp.BackColor = Color.DarkGray;
+                pb.SizeMode = PictureBoxSizeMode.Normal;
+                Disp.Controls.Add(pb);
+                Disp.Show();
+            }
         }
 
         private void btnColor_Click(object sender, EventArgs e)

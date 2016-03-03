@@ -41,13 +41,20 @@ namespace Luncher
     public class ContainerMatrix
     {
         CM2[,] data;
-        string[] cargoes;
+        List<string> cargoes = new List<string>();
         Rectangle space;
         int _SQR, _CBM, z=1;
         CM3 c3 = new CM3();
         int restCBM, restSQR;
         Point currentIndex = Point.Empty; bool _firstIndexAssigned = false;
         List<Point> startIndexes = new List<Point>();
+        ContainerInfo _owner;
+
+        public ContainerInfo Owner
+        {
+            get { return _owner; }
+            private set { _owner = value; }
+        }
 
         public Point CurrentIndex
         {
@@ -77,7 +84,7 @@ namespace Luncher
             set { space = value; }
         }
 
-        public string[] Cargoes
+        public List<string> Cargoes
         {
             get { return cargoes; }
             set { cargoes = value; }
@@ -134,6 +141,7 @@ namespace Luncher
         {
             ClearIndexses();
             startIndexes.Clear();
+            _firstIndexAssigned = false;
             int x = data.GetLength(0); // Get first dimention
             int y = data.GetLength(1); // Get second dimention
             for (int i = 0; i < x; i++)
@@ -185,6 +193,35 @@ namespace Luncher
             restSQR = _SQR; RestCBM = _CBM;
             data[0, 0].StartIndex = true;
         }
+        public bool AddCargo(CargoInfo Cargo, Point Index)
+        {
+            int row=0, col=0;
+            int dimY = data.GetLength(0); // Max width of the container
+            int dimX = data.GetLength(1); // Max heigth of the container
+
+            if (Index.X + Cargo.Space.Width < dimX && Index.Y + Cargo.Space.Height < dimY) // if it fits to container
+            {
+                for (int i = 0; i < Cargo.Space.Height; i++)
+                {
+                    for (int j = 0; j < Cargo.Space.Width; j++)
+                    {
+                        row = i + Index.X; col = j + Index.Y;
+                        data[row, col].StartIndex = false;
+                        data[row, col].IsLoaded = true;
+                        data[row, col].Owner = Cargo.Name;
+                    }
+                }
+                //data[Cargo.Space.X, col + 1].StartIndex = true;
+                ResetIndexes();
+                cargoes.Add(Cargo.Name);
+                return true;
+            }
+            else 
+            { // give out of size err.here
+                return false;
+            }
+
+        }
 
         public ContainerMatrix(int x, int y)
         {
@@ -210,6 +247,7 @@ namespace Luncher
         /// <param name="Container"></param>
         public ContainerMatrix(ContainerInfo Container)
         {
+            _owner = Container;
             data = new CM2[(int)Container.Width, (int)Container.Long];
             initialize((int)Container.Width, (int)Container.Long);
             space = new System.Drawing.Rectangle(0, 0, (int)Container.Width, (int)Container.Long);
@@ -234,26 +272,33 @@ namespace Luncher
     {
         public static CargoInfo Default = new CargoInfo(string.Empty, 0d, 0d, 0d, 0d);
 
+        double _height, _width, _long;
         bool isLoaded = false;
         Rectangle space = new Rectangle();
 
         public string Name      { get; set; }
-        public double Long      { get; set; } // in meter
-        public double Height    { get; set; } // in meter
-        public double Width     { get; set; } // in meter
+        public double Long      { get { return _long; }
+                                  set { _long = value; space = 
+                                  new Rectangle(space.X, space.Y, (int)value,(int) _width); } } // in meter
+        public double Height    { get { return _height; } set { _height = value; } } // in meter
+        public double Width     { get { return _width; }
+                                  set { _width = value; space = 
+                                  new Rectangle(space.X, space.Y, (int)_long,(int) value); } }  // in meter
         public double CBM       { get { return _getCBM(); } private set { } } // in cubic meter
         public double SQR       { get { return _getSQR(); } private set { } } // in square meter
         public double Weight    { get; set; } // in tons
+        public int Level        { get; set; } // as quantity/count
 
         public bool IsLoaded    { get { return isLoaded; } set { isLoaded = value; } }
-        public Rectangle Space  { get { return space; } set { space = value; } }
+        public Rectangle Space  { get { return space; }
+                                  set { space = value; _long = value.Width; _width = value.Height; } }
 
         public CargoInfo() { }
         public CargoInfo(string Name, double Long, double Height, double Width, double Weight)
-        { this.Name = Name; this.Long = Long; this.Height = Height; this.Width = Width; this.Weight = Weight;
+        { this.Name = Name; _long = Long; this._height = Height; this._width = Width; this.Weight = Weight;
         SetPosition(0,0); }
         public CargoInfo(string Name, double Long, double Height, double Width, double Weight, int x, int y)
-        { this.Name = Name; this.Long = Long; this.Height = Height; this.Width = Width; this.Weight = Weight;
+        { this.Name = Name; _long = Long; this._height = Height; this._width = Width; this.Weight = Weight;
             SetPosition(x, y); }
 
         public void SetPosition(int x, int y)
