@@ -1,10 +1,3 @@
-C:\Users\coskun\Documents\GitHub\CapCalc\win\Luncher\bin\Debug\Luncher.exe
-C:\Users\coskun\Documents\GitHub\CapCalc\win\Luncher\bin\Debug\Luncher.pdb
-C:\Users\coskun\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.frmMain.resources
-C:\Users\coskun\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.Properties.Resources.resources
-C:\Users\coskun\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.csproj.GenerateResource.Cache
-C:\Users\coskun\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.exe
-C:\Users\coskun\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.pdb
 C:\Users\owner\Documents\GitHub\CapCalc\win\Luncher\bin\Debug\Luncher.exe
 C:\Users\owner\Documents\GitHub\CapCalc\win\Luncher\bin\Debug\Luncher.pdb
 C:\Users\owner\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.csprojResolveAssemblyReference.cache
@@ -14,3 +7,12 @@ C:\Users\owner\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.Properties
 C:\Users\owner\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.csproj.GenerateResource.Cache
 C:\Users\owner\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.exe
 C:\Users\owner\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.pdb
+C:\Users\coskun\Documents\GitHub\CapCalc\win\Luncher\bin\Debug\Luncher.exe
+C:\Users\coskun\Documents\GitHub\CapCalc\win\Luncher\bin\Debug\Luncher.pdb
+C:\Users\coskun\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.frmImageTip.resources
+C:\Users\coskun\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.frmMain.resources
+C:\Users\coskun\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.Properties.Resources.resources
+C:\Users\coskun\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.csproj.GenerateResource.Cache
+C:\Users\coskun\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.exe
+C:\Users\coskun\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.pdb
+C:\Users\coskun\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.csprojResolveAssemblyReference.cache

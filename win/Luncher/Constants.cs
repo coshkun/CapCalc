@@ -8,6 +8,8 @@ namespace Luncher
 {
     public static class Constants
     {
+        public const int VERTICAL_CARGO_MARGIN = 10;  // in cm.
+        public const int HORIZONTAL_CARGO_MARGIN = 10;// in cm.
     }
 
     public class ContainerInfo
@@ -142,14 +144,15 @@ namespace Luncher
             ClearIndexses();
             startIndexes.Clear();
             _firstIndexAssigned = false;
-            int x = data.GetLength(0); // Get first dimention
-            int y = data.GetLength(1); // Get second dimention
-            for (int i = 0; i < x; i++)
+            currentIndex = Point.Empty;
+            int row = data.GetLength(0); // Get first dimention as rows
+            int col = data.GetLength(1); // Get second dimention as columns
+            for (int i = 0; i < row; i++)
             {
-                for (int j = 0; j < y; j++)
+                for (int j = 0; j < col; j++)
                 {
                     var node = data[i, j];
-                    if (node.IsLoaded) { continue; }
+                    if (node.IsLoaded) { continue; } // those areas are loaded with some cargo, skip your loop
                     else 
                     {   // There is no colission here
                         // Check if there is another index before:
@@ -163,12 +166,38 @@ namespace Luncher
                         }
                         if (currentIndex != Point.Empty && currentIndex.Y == j)
                         {
-                            // if there is a start index in your same clumn before
+                            // if there is a start index in your same column before
                             break; // to the next row of your container
+                        }
+                        if (currentIndex != Point.Empty && currentIndex.Y != j)  //Here to make new assigments for secondary and next indexes
+                        {
+                            int line = i, column = j;
+                            // Now check the boundaries of container and destroy index if too close
+                            if (column > (col - Constants.HORIZONTAL_CARGO_MARGIN))
+                            {/* Destroy index here */ node.StartIndex = false; continue; /* to the next row */ }
+                            if (line > (row - Constants.VERTICAL_CARGO_MARGIN))
+                            {/* Destroy index here again to prevent any overflow */ node.StartIndex = false; continue; /* to the next row */ }
+
+                            else // you are still in availible space, so it is safe to place a new start index again.
+                            { 
+                            node.StartIndex = true;
+                            currentIndex = new Point(i, j);
+                            startIndexes.Add(currentIndex);
+                            break; // to the next row of your container
+                            }
                         }
                     }
                 } // end of columns
             } // end of rows
+            // Now Assing the first element of Index cache as the CurrentIndex; // we will change here for different Gravity offsets.
+            int k = 0;
+            while (data[startIndexes[k].X, startIndexes[k].Y].IsLoaded)
+            {
+                currentIndex = startIndexes[k];
+                k++;
+            }
+            
+
         }
         public void ClearData()
         {
@@ -180,7 +209,7 @@ namespace Luncher
             data = new CM2[x, y];
             initialize(x, y);
             space = new System.Drawing.Rectangle(0, 0, x, y);
-            _SQR = x * y; _CBM = x * y * 1;
+            _SQR = x * y; _CBM = x * y * z;
             restSQR = _SQR; RestCBM = _CBM;
             data[0, 0].StartIndex = true;
         }
@@ -199,8 +228,8 @@ namespace Luncher
             int dimY = data.GetLength(0); // Max width of the container
             int dimX = data.GetLength(1); // Max heigth of the container
 
-            if (Index.X + Cargo.Space.Width < dimX && Index.Y + Cargo.Space.Height < dimY) // if it fits to container
-            {
+            if (Index.Y + Cargo.Space.Width < dimX && Index.X + Cargo.Space.Height < dimY) // if it fits to container
+            { // While Index.Y is the column number of index.. Index.X is the row number
                 for (int i = 0; i < Cargo.Space.Height; i++)
                 {
                     for (int j = 0; j < Cargo.Space.Width; j++)

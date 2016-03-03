@@ -156,11 +156,11 @@ namespace Luncher
             ContainerMatrix Ambar = new ContainerMatrix(secim);
 
             CargoInfo[] Kargolar;
-            // Read the cargoes from data table
+            // Create the cargo list and sort them.
             if (ds.Tables[0].Rows.Count > 0)
             {
                 Kargolar = new CargoInfo[ds.Tables[0].Rows.Count]; // size the cargo list
-                
+                // Read the cargoes from data table
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
                     var crg = new CargoInfo();
@@ -174,7 +174,7 @@ namespace Luncher
                     Kargolar[i] = crg;
                 }
 
-                // Now Sort them based on CBM
+                // Now Sort a copy of them based on CBM
                 object[] sort = new object[Kargolar.Length];
                 for (int i = 0; i < sort.Length; i++)
                 {
@@ -183,7 +183,7 @@ namespace Luncher
 
                 Helper.QuickSort(ref sort, "CBM");
                 
-                // Now check the Gravity Ofset to strat writing in container
+                // Now check the Gravity Offset to start writing in container
                 // (do that later, lets say "Top Left" for now)
 
                 for (int i = sort.Length -1 ; i >= 0; i--)  // Big to Small
@@ -196,48 +196,54 @@ namespace Luncher
                 }
 
                 // Try to take a snapshot for debug purpose
-                Image image = (Image) (new Bitmap(Ambar.Space.Height, Ambar.Space.Width));
+                DebuggerDisplay(Ambar); //shows loaded areas on selected cargo container matrix
+            }
+        }
 
-                using (Graphics g = Graphics.FromImage(image))
+        private void DebuggerDisplay(ContainerMatrix CargoHold)
+        {
+            // Try to take a snapshot for debug purpose
+            Image image = (Image)(new Bitmap(CargoHold.Space.Height, CargoHold.Space.Width));
+
+            using (Graphics g = Graphics.FromImage(image))
+            {
+                // Modify the image using g here... 
+                // Create a brush with an alpha value and use the g.FillRectangle function
+                Color customColor = Color.FromArgb(75, Color.Green);
+                Color indexColor = Color.FromArgb(100, Color.Red);
+                SolidBrush shadowBrush = new SolidBrush(customColor);
+                SolidBrush indexBrush = new SolidBrush(indexColor);
+                g.Clear(Color.DarkGray);
+                for (int i = 0; i < CargoHold.Space.Width - 1; i++)
                 {
-                    // Modify the image using g here... 
-                    // Create a brush with an alpha value and use the g.FillRectangle function
-                    Color customColor = Color.FromArgb(75, Color.Green);
-                    Color indexColor = Color.FromArgb(100, Color.Red);
-                    SolidBrush shadowBrush = new SolidBrush(customColor);
-                    SolidBrush indexBrush = new SolidBrush(indexColor);
-                    for (int i = 0; i < Ambar.Space.Width - 1; i++)
+                    for (int j = 0; j < CargoHold.Space.Height - 1; j++)
                     {
-                        for (int j = 0; j < Ambar.Space.Height - 1; j++)
-                        {
-                            var rec = new RectangleF((float)i, (float)j, 1f, 1f);
+                        var rec = new Rectangle(i, j, 1, 1);
 
-                            if (Ambar.Data[i, j].IsLoaded)
-                            {
-                                g.FillRectangles(shadowBrush, new RectangleF[] { rec });
-                            }
-                            if (Ambar.Data[i, j].StartIndex)
-                            {
-                                g.FillRectangles(indexBrush, new RectangleF[] { rec });
-                            }
-                            // if (i == 0 && j == 500) { System.Diagnostics.Debugger.Break(); }
+                        if (CargoHold.Data[i, j].IsLoaded)
+                        {
+                            g.DrawRectangle(Pens.White, i * 10, j * 10, 10, 10);
+                            g.FillRectangles(shadowBrush, new RectangleF[] { rec });
                         }
+                        if (CargoHold.Data[i, j].StartIndex)
+                        {
+                            var rec2 = new RectangleF((float)i, (float)j, 4f, 4f);
+                            g.FillRectangles(indexBrush, new RectangleF[] { rec2 });
+                        }
+                        // if (i == 0 && j == 500) { System.Diagnostics.Debugger.Break(); }
                     }
                 }
-                // Now display it
-                //var frmDisplay = new frmImageTip();
-                //frmDisplay.Image = image;
-                //frmDisplay.Show();
-                var Disp = new Form();
-                var pb = new PictureBox() {  }; // Image = image, Dock = DockStyle.Fill, Parent = Disp
-                pb.Image = image; pb.Dock = DockStyle.None; pb.Parent = Disp; 
-                pb.Size = new Size(Ambar.Space.Height, Ambar.Space.Width);
-                Disp.Size = new Size(Ambar.Space.Height, Ambar.Space.Width);
-                Disp.BackColor = Color.DarkGray;
-                pb.SizeMode = PictureBoxSizeMode.Normal;
-                Disp.Controls.Add(pb);
-                Disp.Show();
             }
+            // Now display it
+            var Disp = new Form();
+            var pb = new PictureBox() { }; // Image = image, Dock = DockStyle.Fill, Parent = Disp
+            pb.Image = image; pb.Dock = DockStyle.Fill; pb.Parent = Disp;
+            pb.Size = new Size(CargoHold.Space.Height, CargoHold.Space.Width);
+            Disp.Size = new Size(CargoHold.Space.Height, CargoHold.Space.Width);
+            Disp.BackColor = ColorTranslator.FromHtml("#ff333333");
+            pb.SizeMode = PictureBoxSizeMode.Zoom;
+            Disp.Controls.Add(pb);
+            Disp.Show();
         }
 
         private void btnColor_Click(object sender, EventArgs e)
@@ -326,7 +332,7 @@ namespace Luncher
             }
             if (_rValue == "")
             {
-                MessageBox.Show("There is a matching cargo with same name. Your new entry added by " 
+                MessageBox.Show("There is a matching cargo with same name. Your new entry will be added by " 
                                  + NameWhoChecked);
                 _rValue = NameWhoChecked;
                 return _rValue;
