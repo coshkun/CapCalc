@@ -95,7 +95,7 @@ namespace Luncher
             }
 
             // Initialize Konteyner to hold the Max Capacity.
-            Konteyners.Add(new ContainerInfo("13.6 Semitrailer", 13.60d, 2.80d, 2.40d, 22.0d));
+            Konteyners.Add(new ContainerInfo("13.6 Semitrailer", 1360, 280, 240, 22000));
             cmbConSelector.DataSource = Konteyners.ToArray();
             cmbConSelector.DisplayMember = "Name";
             // var usage = ((ContainerInfo)cmbConSelector.SelectedValue).CBM;
@@ -136,16 +136,128 @@ namespace Luncher
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
-            // int[] test = { 1,3,2,5,4,7,34,5,76,11,38,28,0,9,2};
+            /* ***********************************
+             * CAPCALC ALGORITHYM achieved by Rectgangels 
+             * to hold the cargo size and positions in its container
+             * 
+             * Not:
+             * the space property of CargoInfo class uses System.Drawing.Rectangel item
+             * to hold the position and floor area of cargo. Pls, take attention while you
+             * assigning new values as;
+             * 
+             * Cargo.Space = new Rectangle(x,y, m,n);
+             * x => Left of Cargo in Container space
+             * y => Top of Cargo in Container space
+             * m => is the Long  (x dimention of cargo floor area while you look from top)
+             * n => is the Width (y dimention of cargo floor area while you look from top)
+             * 
+             * *********************************** */
+            var secim = (ContainerInfo)cmbConSelector.SelectedItem;
+            ContainerMatrix Ambar = new ContainerMatrix(secim);
 
-            //Random rdn = new Random(2000000);
-            //int[] xdata = new int[2000000];
-            //Helper.MixDataUp(ref xdata, rdn); //Randomize data to be searched
+            CargoInfo[] Kargolar;
+            // Create the cargo list and sort them.
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                Kargolar = new CargoInfo[ds.Tables[0].Rows.Count]; // size the cargo list
+                // Read the cargoes from data table
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    var crg = new CargoInfo();
+                    crg.Name = ds.Tables[0].Rows[i].Field<string>("Name");
+                    crg.Long = ds.Tables[0].Rows[i].Field<double>("Long");
+                    crg.Width = ds.Tables[0].Rows[i].Field<double>("Width");
+                    crg.Height = ds.Tables[0].Rows[i].Field<double>("Height");
+                    crg.Weight = ds.Tables[0].Rows[i].Field<double>("Weight");
+                    crg.Level  = ds.Tables[0].Rows[i].Field<int>("Level");
 
-            //Helper.QuickSort(ref xdata);
+                    Kargolar[i] = crg;
+                }
 
-            //var snc = from eleman in xdata select new { Deger = eleman.ToString() };
-            //dataGridView1.DataSource = snc.ToList();
+                // Now Sort a copy of them based on CBM
+                object[] sort = new object[Kargolar.Length];
+                for (int i = 0; i < sort.Length; i++)
+                {
+                    sort[i] = Kargolar[i];
+                }
+
+                Helper.QuickSort(ref sort, "CBM");
+                
+                // Now check the Gravity Offset to start writing in container
+                // (do that later, lets say "Top Left" for now)
+
+                for (int i = sort.Length -1 ; i >= 0; i--)  // Big to Small
+                {
+                    CargoInfo crg = (CargoInfo)sort[i];
+                    if (Ambar.StartIndexes.Count > 0)
+                    {
+                        int indx = 0;
+                        do
+                        {
+                            bool chk = Ambar.TestCargo(crg, Ambar.StartIndexes[indx]);
+                            if (chk)  // cargo is availible to write in
+                            {         // lets add it to matrix
+                                Ambar.AddCargo(crg, Ambar.StartIndexes[indx]);
+                                break;
+                            }
+                            else
+                            {       // try to rotate or skip to the next index
+                                indx++;// skip next index
+                            }
+                        } while (indx < Ambar.StartIndexes.Count);
+                        // so far we just write the posible cargoes, until now.
+                    }
+                }
+
+                // Try to take a snapshot for debug purpose
+                DebuggerDisplay(Ambar); //shows loaded areas on selected cargo container matrix
+            }
+        }
+
+        private void DebuggerDisplay(ContainerMatrix CargoHold)
+        {
+            // Try to take a snapshot for debug purpose
+            Image image = (Image)(new Bitmap(CargoHold.Space.Height, CargoHold.Space.Width));
+
+            using (Graphics g = Graphics.FromImage(image))
+            {
+                // Modify the image using g here... 
+                // Create a brush with an alpha value and use the g.FillRectangle function
+                Color customColor = Color.FromArgb(75, Color.Green);
+                Color indexColor = Color.FromArgb(100, Color.Red);
+                SolidBrush shadowBrush = new SolidBrush(customColor);
+                SolidBrush indexBrush = new SolidBrush(indexColor);
+                g.Clear(Color.DarkGray);
+                for (int i = 0; i < CargoHold.Space.Width - 1; i++)
+                {
+                    for (int j = 0; j < CargoHold.Space.Height - 1; j++)
+                    {
+                        var rec = new Rectangle(j, i, 1, 1);
+                        g.DrawRectangle(Pens.White, i * 10, j * 10, 10, 10); // this draws the grid
+
+                        if (CargoHold.Data[i, j].IsLoaded)
+                        {
+                            g.FillRectangles(shadowBrush, new RectangleF[] { rec });
+                        }
+                        if (CargoHold.Data[i, j].StartIndex)
+                        {
+                            var rec2 = new RectangleF((float)j, (float)i, 10f, 10f);
+                            g.FillRectangles(indexBrush, new RectangleF[] { rec2 });
+                        }
+                        // if (i == 0 && j == 500) { System.Diagnostics.Debugger.Break(); }
+                    }
+                }
+            }
+            // Now display it
+            var Disp = new Form();
+            var pb = new PictureBox() { }; // Image = image, Dock = DockStyle.Fill, Parent = Disp
+            pb.Image = image; pb.Dock = DockStyle.Fill; pb.Parent = Disp;
+            pb.Size = new Size(CargoHold.Space.Height, CargoHold.Space.Width);
+            Disp.Size = new Size(CargoHold.Space.Height, CargoHold.Space.Width);
+            Disp.BackColor = ColorTranslator.FromHtml("#ff333333");
+            pb.SizeMode = PictureBoxSizeMode.Zoom;
+            Disp.Controls.Add(pb);
+            Disp.Show();
         }
 
         private void btnColor_Click(object sender, EventArgs e)
@@ -173,16 +285,16 @@ namespace Luncher
 
         private void cmbConSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            numLong.Maximum = (decimal)((ContainerInfo)cmbConSelector.SelectedValue).Long *100;
-            numHeight.Maximum = (decimal)((ContainerInfo)cmbConSelector.SelectedValue).Height *100;
-            numWidth.Maximum = (decimal)((ContainerInfo)cmbConSelector.SelectedValue).Width *100;
-            numWeight.Maximum = (decimal)((ContainerInfo)cmbConSelector.SelectedValue).Weight *1000;
+            numLong.Maximum = (decimal)((ContainerInfo)cmbConSelector.SelectedValue).Long;
+            numHeight.Maximum = (decimal)((ContainerInfo)cmbConSelector.SelectedValue).Height;
+            numWidth.Maximum = (decimal)((ContainerInfo)cmbConSelector.SelectedValue).Width;
+            numWeight.Maximum = (decimal)((ContainerInfo)cmbConSelector.SelectedValue).Weight;
 
-            summary = "Long: " + ((ContainerInfo)cmbConSelector.SelectedValue).Long.ToString() + "m \n"
-                            + "Height: " + ((ContainerInfo)cmbConSelector.SelectedValue).Height.ToString() + "m \n"
-                            + "Width: " + ((ContainerInfo)cmbConSelector.SelectedValue).Width.ToString() + "m \n"
-                            + "Capacity: " + ((ContainerInfo)cmbConSelector.SelectedValue).CBM.ToString() + "m \n"
-                            + "Payload: " + ((ContainerInfo)cmbConSelector.SelectedValue).Weight.ToString() + " tons";
+            summary = "Long: " + (((ContainerInfo)cmbConSelector.SelectedValue).Long / 100).ToString() + "m \n"
+                            + "Height: " + (((ContainerInfo)cmbConSelector.SelectedValue).Height / 100).ToString() + "m \n"
+                            + "Width: " + (((ContainerInfo)cmbConSelector.SelectedValue).Width / 100).ToString() + "m \n"
+                            + "Capacity: " + (((ContainerInfo)cmbConSelector.SelectedValue).CBM / 1000000).ToString() + "m3 \n"
+                            + "Payload: " + (((ContainerInfo)cmbConSelector.SelectedValue).Weight / 1000).ToString() + " tons";
             //if(this.isLoaded)
                 InfoTips.SetToolTip(cmbConSelector, summary);
         }
@@ -234,7 +346,7 @@ namespace Luncher
             }
             if (_rValue == "")
             {
-                MessageBox.Show("There is a matching cargo with same name. Your new entry added by " 
+                MessageBox.Show("There is a matching cargo with same name. Your new entry will be added by " 
                                  + NameWhoChecked);
                 _rValue = NameWhoChecked;
                 return _rValue;
