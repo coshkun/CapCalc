@@ -46,7 +46,7 @@ namespace Luncher
         List<string> cargoes = new List<string>();
         Rectangle space;
         int _SQR, _CBM, z=1;
-        CM3 c3 = new CM3();
+        //CM3 c3 = new CM3();
         int restCBM, restSQR;
         Point currentIndex = Point.Empty; bool _firstIndexAssigned = false;
         List<Point> startIndexes = new List<Point>();
@@ -174,7 +174,7 @@ namespace Luncher
                             int line = i, column = j;
                             // Now check the boundaries of container and destroy index if too close
                             if (column > (col - Constants.HORIZONTAL_CARGO_MARGIN))
-                            {/* Destroy index here */ node.StartIndex = false; continue; /* to the next row */ }
+                            {/* Destroy index here */ node.StartIndex = false; continue; /* to the next column */ }
                             if (line > (row - Constants.VERTICAL_CARGO_MARGIN))
                             {/* Destroy index here again to prevent any overflow */ node.StartIndex = false; continue; /* to the next row */ }
 
@@ -189,14 +189,15 @@ namespace Luncher
                     }
                 } // end of columns
             } // end of rows
-            // Now Assing the first element of Index cache as the CurrentIndex; // we will change here for different Gravity offsets.
-            int k = 0;
-            while (data[startIndexes[k].X, startIndexes[k].Y].IsLoaded)
-            {
-                currentIndex = startIndexes[k];
-                k++;
-            }
+              // Now Assing the first element of Index cache as the CurrentIndex; // we will change here for different Gravity offsets.
             
+            //int k = 0;
+            //while (data[startIndexes[k].X, startIndexes[k].Y].IsLoaded)
+            //{
+            //    startIndexes.RemoveAt(k);
+            //    k++;
+            //}
+            //currentIndex = startIndexes.First();
 
         }
         public void ClearData()
@@ -224,15 +225,15 @@ namespace Luncher
         }
         public bool AddCargo(CargoInfo Cargo, Point Index)
         {
-            int row=0, col=0;
-            int dimY = data.GetLength(0); // Max width of the container
-            int dimX = data.GetLength(1); // Max heigth of the container
+            int row = 0, col = 0;
+            int dimY = data.GetLength(0); // Max height of the container
+            int dimX = data.GetLength(1); // Max width of the container
 
             if (Index.Y + Cargo.Space.Width < dimX && Index.X + Cargo.Space.Height < dimY) // if it fits to container
             { // While Index.Y is the column number of index.. Index.X is the row number
-                for (int i = 0; i < Cargo.Space.Height; i++)
+                for (int i = 0; i < Cargo.Space.Height; i++) // start scanfor rows
                 {
-                    for (int j = 0; j < Cargo.Space.Width; j++)
+                    for (int j = 0; j < Cargo.Space.Width; j++) // start scan for columns
                     {
                         row = i + Index.X; col = j + Index.Y;
                         data[row, col].StartIndex = false;
@@ -240,9 +241,26 @@ namespace Luncher
                         data[row, col].Owner = Cargo.Name;
                     }
                 }
-                //data[Cargo.Space.X, col + 1].StartIndex = true;
+                // data[Cargo.Space.X, col + 1].StartIndex = true;
                 ResetIndexes();
                 cargoes.Add(Cargo.Name);
+                return true;
+            }
+            else
+            { // give out of size err.here
+                return false;
+            }
+
+        }
+        public bool TestCargo(CargoInfo Cargo, Point Index)
+        {
+            //int row=0, col=0;
+            int dimY = data.GetLength(0); // Max width of the container
+            int dimX = data.GetLength(1); // Max heigth of the container
+
+            if (Index.Y + Cargo.Space.Width < dimX && Index.X + Cargo.Space.Height < dimY) // if it fits to container
+            { // While Index.Y is the column number of index.. Index.X is the row number
+                
                 return true;
             }
             else 

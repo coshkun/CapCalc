@@ -191,7 +191,21 @@ namespace Luncher
                     CargoInfo crg = (CargoInfo)sort[i];
                     if (Ambar.StartIndexes.Count > 0)
                     {
-                        Ambar.AddCargo(crg, Ambar.CurrentIndex);
+                        int indx = 0;
+                        do
+                        {
+                            bool chk = Ambar.TestCargo(crg, Ambar.StartIndexes[indx]);
+                            if (chk)  // cargo is availible to write in
+                            {         // lets add it to matrix
+                                Ambar.AddCargo(crg, Ambar.StartIndexes[indx]);
+                                break;
+                            }
+                            else
+                            {       // try to rotate or skip to the next index
+                                indx++;// skip next index
+                            }
+                        } while (indx < Ambar.StartIndexes.Count);
+                        // so far we just write the posible cargoes, until now.
                     }
                 }
 
@@ -218,16 +232,16 @@ namespace Luncher
                 {
                     for (int j = 0; j < CargoHold.Space.Height - 1; j++)
                     {
-                        var rec = new Rectangle(i, j, 1, 1);
+                        var rec = new Rectangle(j, i, 1, 1);
+                        g.DrawRectangle(Pens.White, i * 10, j * 10, 10, 10); // this draws the grid
 
                         if (CargoHold.Data[i, j].IsLoaded)
                         {
-                            g.DrawRectangle(Pens.White, i * 10, j * 10, 10, 10);
                             g.FillRectangles(shadowBrush, new RectangleF[] { rec });
                         }
                         if (CargoHold.Data[i, j].StartIndex)
                         {
-                            var rec2 = new RectangleF((float)i, (float)j, 4f, 4f);
+                            var rec2 = new RectangleF((float)j, (float)i, 10f, 10f);
                             g.FillRectangles(indexBrush, new RectangleF[] { rec2 });
                         }
                         // if (i == 0 && j == 500) { System.Diagnostics.Debugger.Break(); }
