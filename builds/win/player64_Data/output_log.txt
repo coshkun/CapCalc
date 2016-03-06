@@ -6,29 +6,29 @@ Direct3D:
     Vendor:   ATI
     VRAM:     1008 MB
 Cluster Renderer Log : ARG list
-C:\Users\coskun\Desktop\Builds\player64.exe
+C:\Users\coskun\Desktop\render\player64.exe
 Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\coskun\Desktop\Builds\player64_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\coskun\Desktop\Builds\player64_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\coskun\Desktop\Builds\player64_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
-Loading C:\Users\coskun\Desktop\Builds\player64_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
-Platform assembly: C:\Users\coskun\Desktop\Builds\player64_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\coskun\Desktop\Builds\player64_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\coskun\Desktop\Builds\player64_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\coskun\Desktop\Builds\player64_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: C:\Users\coskun\Desktop\Builds\player64_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading C:\Users\coskun\Desktop\Builds\player64_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.049 seconds
-Platform assembly: C:\Users\coskun\Desktop\Builds\player64_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\coskun\Desktop\Builds\player64_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\coskun\Desktop\render\player64_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\coskun\Desktop\render\player64_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\coskun\Desktop\render\player64_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\coskun\Desktop\render\player64_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\coskun\Desktop\render\player64_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\coskun\Desktop\render\player64_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\coskun\Desktop\render\player64_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\coskun\Desktop\render\player64_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\coskun\Desktop\render\player64_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\coskun\Desktop\render\player64_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.051 seconds
+Platform assembly: C:\Users\coskun\Desktop\render\player64_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\coskun\Desktop\render\player64_Data\Managed\System.dll (this message is harmless)
 <RI> Initializing input.
 XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
 <RI> Input initialized.
 desktop: 1680x1050 60Hz; virtual: 1680x1050 at 0,0
 <RI> Initialized touch support.
-UnloadTime: 1.128657 ms
+UnloadTime: 1.180957 ms
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: d1c -> priority: 1 
+  Thread -> id: c88 -> priority: 1 
 Can not play a disabled audio source
  
 (Filename:  Line: 436)
@@ -297,6 +297,168 @@ Can not play a disabled audio source
  
 (Filename:  Line: 436)
 
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
 Can not play a disabled audio source
  
 (Filename:  Line: 436)
@@ -1308,6 +1470,158 @@ Can not play a disabled audio source
 Can not play a disabled audio source
  
 (Filename:  Line: 436)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Can not play a disabled audio source
+ 
+(Filename:  Line: 436)
+
+IndexOutOfRangeException: Array index is out of range.
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.PlayFootStepAudio () [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.ProgressStepCycle (Single speed) [0x00000] in <filename unknown>:0 
+  at UnityStandardAssets.Characters.FirstPerson.FirstPersonController.FixedUpdate () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
 
 Can not play a disabled audio source
  
