@@ -270,6 +270,30 @@ namespace Luncher
             }
 
         }
+        public void FlipHorizontal()
+        {
+            int row = 0, col = 0;
+            int dimY = data.GetLength(0) - 1; // Max height of the container
+            int dimX = data.GetLength(1) - 1; // Max width of the container
+            // CM2[,] buffer = new CM2[dimY, dimX];
+            // CM2 swap = new CM2();
+
+            // initialize(ref buffer, dimY, dimX);
+
+            for (int i = 0; i < dimY; i++) // start scanfor rows
+            {
+                for (int j = 0; j < dimX / 2; j++) // start scan for columns
+                {
+                    row = i; col = dimX - j;
+                    var swap = this.data[row, col];
+                    this.data[row, col] = data[row, j];
+                    this.data[row, j] = swap;
+                }
+            }
+
+            // data[Cargo.Space.X, col + 1].StartIndex = true;
+            // ResetIndexes();
+        }
 
         public ContainerMatrix(int x, int y)
         {
@@ -311,6 +335,16 @@ namespace Luncher
                 for (int j = 0; j <= y; j++)
                 {
                     data[i, j] = new CM2();
+                }
+            }
+        }
+        public void initialize(ref CM2[,] buffer ,int x, int y)
+        {
+            for (long i = 0; i < x; i++)
+            {
+                for (int j = 0; j < y; j++)
+                {
+                    buffer[i, j] = new CM2();
                 }
             }
         }

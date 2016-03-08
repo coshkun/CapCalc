@@ -208,7 +208,7 @@ namespace Luncher
                         // so far we just write the posible cargoes, until now.
                     }
                 }
-
+                Ambar.FlipHorizontal();
                 // Try to take a snapshot for debug purpose
                 DebuggerDisplay(Ambar); //shows loaded areas on selected cargo container matrix
             }
