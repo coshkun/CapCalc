@@ -294,6 +294,30 @@ namespace Luncher
             // data[Cargo.Space.X, col + 1].StartIndex = true;
             // ResetIndexes();
         }
+        public void FlipVertical()
+        {
+            int row = 0, col = 0;
+            int dimY = data.GetLength(0) - 1; // Max height of the container
+            int dimX = data.GetLength(1) - 1; // Max width of the container
+            // CM2[,] buffer = new CM2[dimY, dimX];
+            // CM2 swap = new CM2();
+
+            // initialize(ref buffer, dimY, dimX);
+
+            for (int i = 0; i < dimY / 2; i++) // start scanfor rows
+            {
+                for (int j = 0; j < dimX; j++) // start scan for columns
+                {
+                    row = dimY - i; col = j;
+                    var swap = this.data[row, col];
+                    this.data[row, col] = data[i, col];
+                    this.data[i, col] = swap;
+                }
+            }
+
+            // data[Cargo.Space.X, col + 1].StartIndex = true;
+            // ResetIndexes();
+        }
 
         public ContainerMatrix(int x, int y)
         {
