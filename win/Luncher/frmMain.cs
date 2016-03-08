@@ -370,7 +370,7 @@ namespace Luncher
             r.SetField<int>("Level", (int)numLevel.Value);
             r.SetField<double>("Weight", (double)numWeight.Value);
             r.SetField<double>("CBM",
-                      (double)(numLong.Value * numHeight.Value * numWeight.Value));
+                      (double)(numLong.Value * numHeight.Value * numWidth.Value));
             if (txtColor.Text == string.Empty) { txtColor.Text = ColorTranslator.ToHtml(cd.Color); }
             r.SetField<string>("Color", txtColor.Text);
 

@@ -1,5 +1,6 @@
 C:\Users\coskun\Documents\GitHub\CapCalc\win\Luncher\bin\Debug\Luncher.exe
 C:\Users\coskun\Documents\GitHub\CapCalc\win\Luncher\bin\Debug\Luncher.pdb
+C:\Users\coskun\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.csprojResolveAssemblyReference.cache
 C:\Users\coskun\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.frmImageTip.resources
 C:\Users\coskun\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.frmMain.resources
 C:\Users\coskun\Documents\GitHub\CapCalc\win\Luncher\obj\Debug\Luncher.Properties.Resources.resources

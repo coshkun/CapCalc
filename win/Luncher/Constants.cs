@@ -207,7 +207,7 @@ namespace Luncher
         }
         public void ReCreateMatrix(int x,int y)
         {
-            data = new CM2[x, y];
+            data = new CM2[x + 1 , y + 1];
             initialize(x, y);
             space = new System.Drawing.Rectangle(0, 0, x, y);
             _SQR = x * y; _CBM = x * y * z;
@@ -216,7 +216,7 @@ namespace Luncher
         }
         public void ReCreateMatrix(ContainerInfo Container)
         {
-            data = new CM2[(int)Container.Long, (int)Container.Width];
+            data = new CM2[(int)Container.Width + 1, (int)Container.Long + 1];
             initialize((int)Container.Long, (int)Container.Width);
             space = new System.Drawing.Rectangle(0, 0, (int)Container.Long, (int)Container.Width);
             _SQR = (int)Container.SQR; _CBM = (int)Container.CBM;
@@ -244,6 +244,7 @@ namespace Luncher
                 // data[Cargo.Space.X, col + 1].StartIndex = true;
                 ResetIndexes();
                 cargoes.Add(Cargo.Name);
+                Cargo.IsLoaded = true;
                 return true;
             }
             else
@@ -272,7 +273,7 @@ namespace Luncher
 
         public ContainerMatrix(int x, int y)
         {
-            data = new CM2[x,y];
+            data = new CM2[x + 1 , y + 1];
             initialize(x, y);
             space = new System.Drawing.Rectangle(0, 0, x, y);
             _SQR = x * y; _CBM = x*y*z;
@@ -281,7 +282,7 @@ namespace Luncher
         }
         public ContainerMatrix(int x, int y, int z)
         {
-            data = new CM2[x, y];
+            data = new CM2[x + 1 , y + 1 ];
             initialize(x,y);
             space = new System.Drawing.Rectangle(0, 0, x, y);
             _SQR = x * y; _CBM = x * y * z;
@@ -295,7 +296,7 @@ namespace Luncher
         public ContainerMatrix(ContainerInfo Container)
         {
             _owner = Container;
-            data = new CM2[(int)Container.Width, (int)Container.Long];
+            data = new CM2[(int)Container.Width + 1, (int)Container.Long + 1 ];
             initialize((int)Container.Width, (int)Container.Long);
             space = new System.Drawing.Rectangle(0, 0, (int)Container.Width, (int)Container.Long);
             _SQR = (int)Container.SQR; _CBM = (int)Container.CBM;
@@ -305,9 +306,9 @@ namespace Luncher
         private void initialize(int x, int y)
         {
             _firstIndexAssigned = false;
-            for (long i = 0; i < x; i++)
+            for (long i = 0; i <= x; i++)
             {
-                for (int j = 0; j < y; j++)
+                for (int j = 0; j <= y; j++)
                 {
                     data[i, j] = new CM2();
                 }
