@@ -1,11 +1,30 @@
 {
-  "name": "luncher",
-  "version": "1.0.0",
-  "description": "Linux luncher of miracle",
-  "main": "index.js",
-  "scripts": {
-    "start": "electron ."
-  },
-  "author": "Coskun Caner",
-  "license": "CC01"
+	"main": "index.html",
+	"name": "SilverTest-linux-x64",
+	"version": "0.1.0",
+	"window" :
+	{
+		"toolbar"	: false,
+		"frame"		: false,
+		"icon" 		: "./src/favicon.png",
+		"min_width" : 300,
+		"min_height": 300,
+		"resizable" : true,
+		"show_in_taskbar" : true,
+		"fullscreen": false
+	},
+
+	"maintainers"	:
+	[
+	{
+		"name" 		: "Coskun Caner",
+		"email"		: "cskncnr@gmail.com",
+		"web"		: "http://github.com/coshkun"
+	},
+	{
+		"name" 		: "John Connor",
+		"email"		: "john@sky.net",
+		"web"		: "www.sky.net"
+	}
+	]
 }

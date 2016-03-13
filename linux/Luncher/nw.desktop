@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=SilverTest Start App
+Comment=Start your luncher from here
+Type=Application
+Exec=/home/coskun/GitHub/SilverTest-linux-x64/nw .
+Icon=/home/coskun/GitHub/SilverTest-linux-x64/src/favicon.png
+Name[tr_TR]=SilverTest Default App
+Categories=Development;
