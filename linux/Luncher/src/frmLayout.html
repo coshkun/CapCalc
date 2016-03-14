@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html lang="TR">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<link rel="stylesheet" type="text/css" href="reset.css">
+<link rel="stylesheet" type="text/css" href="jquery-ui/jquery-ui.css">
+  <style>
+  #draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+  #droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+  </style>
+</head>
+
+<body>
+<div class="toolbox">Some Content</div>
+
+<script src="jquery/jquery.js"></script>
+<script src="jquery-ui/jquery-ui.js"></script>
+<script>
+$(function(){
+	$(".toolbox").draggable();
+	});
+</script>
+</body>
+</html>
