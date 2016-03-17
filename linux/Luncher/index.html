@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title></title>
+        <title>MY APP TITLE</title>
     <link rel="stylesheet" type="text/css" href="src/reset.css">
     <link rel="stylesheet" type="text/css" href="src/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="src/bootstrap/dist/css/bootstrap-theme.min.css">
@@ -21,13 +21,15 @@
     <body>
 
     <header>
-        <ul>
-            <li><a href='#' title='Minimize' id='windowControlMinimize'></a></li><!--
-         --><li><a href='#' title='Maximize' id='windowControlMaximize'></a></li><!--
-         --><li><a href='#' title='Close'    id='windowControlClose'   ></a></li>
-        </ul>
+    <p><img src="src/favicon.png" style="width:22px; height:22px;"> MY APP TITLE</p>
+    <ul>
+        <li><a href='#' title='Minimize' id='windowControlMinimize' class='visible'></a></li><!--
+     --><li><a href='#' title='Maximize' id='windowControlMaximize' class='visible'></a></li><!--
+     --><li><a href='#' title='Close'  id='windowControlClose' class='visible'></a></li>
+    </ul>
     </header>
 
+    <iframe class="iframe" src="src/frmLayout.html" scrolling="no"></iframe>
 
     <script type="text/javascript" src="src/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="src/bootstrap/dist/js/bootstrap.min.js"></script>
