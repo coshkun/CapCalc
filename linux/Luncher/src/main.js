@@ -31,3 +31,38 @@ win.on('maximize', function(){
 win.on('unmaximize', function(){
 	win.isMaximized = false;
 });
+
+
+// Calc iFrame Heights
+$(document).ready(function(){
+	// on page load
+	calcHeights();
+});
+
+$(window).resize(function(){
+	// on window resize
+	calcHeights();
+});
+
+var frameHeigt = 0;
+function calcHeights(){
+	frameHeigt = $(window).height() - $("header").outerHeight();
+	
+	$(".iframe").height(frameHeigt);
+} // End of Calculation
+
+
+//Change Hover Images
+$(function()
+{
+	$('header>ul>li').hover(function()
+	{
+		// Mouse Enter
+		$(this).find('a').removeClass('gorunur').addClass('gizli');
+	},
+	function()
+	{
+		// Mouse Leave
+		$(this).find('a').removeClass('gizli').addClass('gorunur');
+	});
+});
