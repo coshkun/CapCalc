@@ -1,0 +1,33 @@
+{
+	"main": "index.html",
+	"name": "CapCalc-linux-x64",
+	"version": "0.1.0",
+    "scripts": {
+        "start" : "nw ."
+    },
+	"window" :
+	{
+		"toolbar"	: false,
+		"frame"		: false,
+		"icon" 		: "./src/favicon.png",
+		"min_width" : 300,
+		"min_height": 300,
+		"resizable" : true,
+		"show_in_taskbar" : true,
+		"fullscreen": false
+	},
+
+	"maintainers"	:
+	[
+	{
+		"name" 		: "Coskun Caner",
+		"email"		: "cskncnr@gmail.com",
+		"web"		: "http://github.com/coshkun"
+	},
+	{
+		"name" 		: "John Connor",
+		"email"		: "john@sky.net",
+		"web"		: "www.sky.net"
+	}
+	]
+}

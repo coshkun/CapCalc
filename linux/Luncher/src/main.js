@@ -3,6 +3,9 @@ var nw = require('nw.gui');
 var win = nw.Window.get();
 win.isMaximized = false;
 
+var const_HeaderH = $("header").outerHeight();
+
+
 // Min
 document.getElementById('windowControlMinimize').onclick = function()
 {
@@ -39,16 +42,26 @@ $(document).ready(function(){
 	calcHeights();
 });
 
+$(window).bind("resize", function(){
+	// on window resize
+    calcHeights();
+});
+/*
 $(window).resize(function(){
 	// on window resize
 	calcHeights();
 });
-
-var frameHeigt = 0;
+*/
+var frameHeight, frameWidth = 0;
 function calcHeights(){
-	frameHeigt = $(window).height() - $("header").outerHeight();
+	frameHeight = $(window).height() - const_HeaderH;
+	frameWidth = $(window).width() - 1;
 	
-	$(".iframe").height(frameHeigt);
+	// $(".iframe").height(frameHeight);
+	// $(".iframe").width(frameWidth);
+
+	$('.iframe').css('height', frameHeight);
+	$('.iframe').css('width', frameWidth);
 } // End of Calculation
 
 

@@ -1,0 +1,111 @@
+@charset "UTF-8";
+
+.p0{
+	padding: 0;
+}
+
+.m0{
+	margin: 0;
+}
+
+.no-drag {
+  -webkit-app-region: no-drag;
+}
+
+html, body {
+	margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Tahoma, Verdana, Sans-Serif;
+	font-size: 12px;
+	color: #333;
+}
+
+.Color1{ background-color: #d13438; }
+.Color2{ background-color: #486850; }
+.Color3{ background-color: #4a5459; }
+.Color4{ background-color: #5d5a5b; }
+.Color5{ background-color: #ff4343; }
+.Color6{ background-color: #567c73; }
+.Color7{ background-color: #69697e; }
+.Color8{ background-color: #7a7574; }
+.Color9{ background-color: #dddbea; }
+
+.positionable {
+	position: absolute;
+	display: block;
+	right: 0;
+	bottom: 0;
+	background-color: #bcd5e6;
+	text-align: center;
+}
+
+.UserRectangle
+{
+	/* Container for main form */
+	background-color: #fefefe;
+}
+
+.MenuBar
+{
+	width: 100vw; /* 640px; */
+	height: 25px;
+	background-color: #ccc;
+}
+
+.UWPmenu
+{
+	width: 40px;
+	display: flex;
+	background-color: #fff;
+	border: solid 1px #aab2bd;
+	position: absolute !important;
+	left: 0;
+}
+
+.UWPslider
+{
+	width: 116px;
+	display: flex;
+	background-color: #dddbea;
+	-webkit-box-shadow: inset -3px 0 5px rgba(0,0,0,.5);
+	-moz-box-shadow: inset -3px 0 5px rgba(0,0,0,.5);
+	box-shadow: inset -3px 0 5px rgba(0,0,0,.5);
+	border: solid 1px #aab2bd;
+	position: absolute !important;
+	left: 40px;
+}
+
+.UWPcontent
+{
+	overflow: hidden;
+	background-color: #ff4343;
+	 /* width: 480px; */
+	position: absolute !important;
+	left: 160px;
+	right: 200px;
+}
+
+.UWPright
+{
+	overflow: auto;
+	width: 200px;
+	position: absolute !important;
+	right: 0px;
+}
+
+.FrmDialogButtons
+{
+	overflow: auto;
+	/* width: 480px; */
+	height: 30px;
+	background-color: #898bb4;
+	position: absolute !important;
+	left: 160px;
+	bottom: 0px;
+}
+
+@media only screen and (media feature) {
+    CSS-Code;
+}
