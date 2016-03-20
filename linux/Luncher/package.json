@@ -1,6 +1,6 @@
 {
   "main": "index.html",
-  "name": "CapCalc-linux-x64",
+  "name": "capcalc-linux-x64",
   "version": "0.1.0",
   "window": {
     "toolbar": false,
@@ -24,6 +24,8 @@
       "web": "www.sky.net"
     }
   ],
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "edge": "^5.0.0"
   }
 }

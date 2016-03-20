@@ -4,7 +4,7 @@
   "description": "Linux luncher app for my killer Capacity Calculator project.",
   "main": "main.js",
   "scripts": {
-    "start": "../nw main.js"
+    "start": "../nw"
   },
   "repository": {
     "type": "git",

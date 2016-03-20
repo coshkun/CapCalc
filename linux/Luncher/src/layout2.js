@@ -7,7 +7,6 @@ var const_FrmDialogButtonsH = $(".FrmDialogButtons").outerHeight() -2;
 var const_UWPmenu_sliderW = $(".UWPmenu").width() + $(".UWPslider").width() +3;
 var const_UWPrightW = $(".UWPright").outerWidth();
 
-// var edge = require("edge");
 
 $(function(){
 	$("#dialog").dialog();
@@ -88,4 +87,27 @@ function renderSizes()
 	$('.FrmDialogButtons').css('width', frmDialogButtonWide);
 }
 
-// HELPERS
+// UWPmenuButtons
+// Initialize Buttons
+
+// Button Actions
+  $(function() {
+    $( ".UWPmenuLink" ) // "input[type=submit], a, button"
+      .button()
+      .click(function( event ) {
+
+      	var targetElement = $(this).attr('href');
+
+      	event.preventDefault();
+      	if (targetElement == "#Home")
+      	{
+      		var _tmp = "./img/uwp_btn_home.png";
+      		$(".UWPmenuLink").css('background-image', 'url("' + _tmp + '")');
+      		alert("Home ok!");
+      	}
+      	else
+      	{
+      		alert("unable to load broken UWP module :(");
+      	}
+      });
+  });

@@ -28,6 +28,5 @@
   "homepage": "https://github.com/coshkun/CapCalc#readme",
   "dependencies": {},
   "devDependencies": {
-    "edge": "^5.0.0"
   }
 }

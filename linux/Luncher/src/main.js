@@ -1,10 +1,13 @@
 
+// Variables for NW window and TitleBar
 var nw = require('nw.gui');
 var win = nw.Window.get();
 win.isMaximized = false;
-
-
 var const_HeaderH = $("header").outerHeight();
+
+// Variables for Edge and .NET CLR
+var edge = require('edge');
+var fs = require('fs');
 
 // Min
 document.getElementById('windowControlMinimize').onclick = function()
@@ -65,7 +68,7 @@ function calcHeights(){
 } // End of Calculation
 
 
-//Change Hover Images
+//Change Hover TitleBar Images
 $(function()
 {
 	$('header>ul>li').hover(function()
@@ -79,3 +82,27 @@ $(function()
 		$(this).find('a').removeClass('gizli').addClass('gorunur');
 	});
 });
+
+var getPerson = edge.func(function () {/*
+    using System.Threading.Tasks;
+
+    public class Person
+    {
+        public int anInteger = 1;
+        public double aNumber = 3.1415;
+        public string aString = "foo";
+        public bool aBoolean = true;
+        public byte[] aBuffer = new byte[10];
+        public object[] anArray = new object[] { 1, "foo" };
+        public object anObject = new { a = "foo", b = 12 };
+    }
+
+    public class Startup
+    {
+        public async Task<object> Invoke(dynamic input)
+        {
+            Person person = new Person();
+            return person;
+        }
+    }
+*/});

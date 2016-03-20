@@ -51,6 +51,7 @@ html, body {
 {
 	width: 100vw; /* 640px; */
 	height: 25px;
+	line-height:  0;
 	background-color: #ccc;
 }
 
@@ -62,6 +63,7 @@ html, body {
 	border: solid 1px #aab2bd;
 	position: absolute !important;
 	left: 0;
+	line-height:  0;
 }
 
 .UWPslider
@@ -106,6 +108,27 @@ html, body {
 	bottom: 0px;
 }
 
-@media only screen and (media feature) {
-    CSS-Code;
+/* UWPmenuButtons li - list item */
+.UWPmenuButton{
+	width:              40px;
+    height:             33px;
+    margin:             0;
+    padding: 			0;
+    line-height:  		0;
+    left:				0;
+    background-image:   url('./img/uwp_btn_base.png');
+    background-repeat:  no-repeat;
+    -webkit-app-region: no-drag;
+}
+
+.UWPmenuLink{ /* a link item */
+	width:              40px;
+    height:             33px;
+    margin:             0;
+    padding: 			0;
+    line-height:  		0;
+    left:				0px;
+    /* background-image:   url('./img/uwp_btn_home.png'); */
+    background-repeat:  no-repeat;
+    -webkit-app-region: no-drag;
 }
