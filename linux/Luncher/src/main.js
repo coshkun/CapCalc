@@ -3,8 +3,8 @@ var nw = require('nw.gui');
 var win = nw.Window.get();
 win.isMaximized = false;
 
-var const_HeaderH = $("header").outerHeight();
 
+var const_HeaderH = $("header").outerHeight();
 
 // Min
 document.getElementById('windowControlMinimize').onclick = function()

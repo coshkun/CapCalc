@@ -7,6 +7,8 @@ var const_FrmDialogButtonsH = $(".FrmDialogButtons").outerHeight() -2;
 var const_UWPmenu_sliderW = $(".UWPmenu").width() + $(".UWPslider").width() +3;
 var const_UWPrightW = $(".UWPright").outerWidth();
 
+// var edge = require("edge");
+
 $(function(){
 	$("#dialog").dialog();
 });
