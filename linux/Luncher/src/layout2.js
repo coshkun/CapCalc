@@ -17,6 +17,7 @@ $(document).ready(function(){
 	refreshSizes();
 	initialSizes();
 	calcPositions();
+	initialButons();
 });
 
 	// on window resize
@@ -89,7 +90,27 @@ function renderSizes()
 
 // UWPmenuButtons
 // Initialize Buttons
+function initialButons()
+{
+	var btnCount = 0;
+	var lnkList = $(document).find('.UWPmenuLink');
+	// Dynamic load for each element by loop
+	$('.UWPmenuLink').each(function(i, obj) {
+    //test
+    var chk = $(this).attr('href');
+  		var _imgsrc = chk.substr(1, chk.lenght).toLowerCase();
+  		var _tmp = "./img/uwp_btn_"+_imgsrc+".png";
+  		$(this).css('background-image', 'url("' + _tmp + '")');
+  		// Alert if no accesor on html. (debug purpose)
+  		if (chk == "" || chk == "#") { alert("No selector on UWP buttons!"); }
+    btnCount = i + 1;
+	});
 
+	/*  // Static load one-by-one for each element
+	var _tmp = "./img/uwp_btn_Home.png";
+    $(".UWPmenuLink").css('background-image', 'url("' + _tmp + '")');
+    */
+}
 // Button Actions
   $(function() {
     $( ".UWPmenuLink" ) // "input[type=submit], a, button"
@@ -101,8 +122,6 @@ function renderSizes()
       	event.preventDefault();
       	if (targetElement == "#Home")
       	{
-      		var _tmp = "./img/uwp_btn_home.png";
-      		$(".UWPmenuLink").css('background-image', 'url("' + _tmp + '")');
       		alert("Home ok!");
       	}
       	else
