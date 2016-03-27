@@ -1,0 +1,33 @@
+{
+  "name": "capcalc-linluncher-x64",
+  "version": "1.0.0",
+  "description": "Linux luncher app for my killer Capacity Calculator project.",
+  "main": "main.js",
+  "scripts": {
+    "start": "../nw"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coshkun/CapCalc.git"
+  },
+  "keywords": [
+    "capcalc",
+    "volume",
+    "calculator",
+    "truck",
+    "semi-trailer",
+    "ship",
+    "cargo",
+    "container"
+  ],
+  "author": "Coskun Caner",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/coshkun/CapCalc/issues"
+  },
+  "homepage": "https://github.com/coshkun/CapCalc#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "bootstrap": "file:bootstrap"
+  }
+}

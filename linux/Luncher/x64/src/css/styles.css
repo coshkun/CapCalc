@@ -1,0 +1,97 @@
+@charset "UTF-8";
+/* Helpers */
+.p0{ padding: 0; }
+.m0{ margin: 0; }
+/* NW.js */
+.dragable { -webkit-app-region: drag; }
+.no-drag  { -webkit-app-region: no-drag; }
+/* Body Reset */
+html { height:100%; margin:0px; padding: 0px; }
+body { height:100%; margin:0px; padding: 0px; }
+/* Colors */
+.Color1{ background-color: #99ccff; }
+.Color2{ background-color: #99b3ff; }
+.Color3{ background-color: #9999ff; }
+.Color4{ background-color: #b399ff; }
+.Color5{ background-color: #cc99ff; }
+/* Interface & Layout */
+.iframe{
+    margin: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto;
+    position: fixed;
+	top: 0; left: 0; bottom: 0; right: 0;
+}
+.UWPcontainer{
+	margin: 0;
+	display: block;
+	overflow: hidden;
+	max-height: 100%;
+	max-width: 100%;
+	position: fixed;
+	top: 0; left: 0; bottom: 0; right: 0;
+}
+.FormMenu{
+	margin: 0;
+	display: block;
+	overflow: hidden;
+	height: 24px;
+	width: 100%;
+	max-height: 24px;
+	max-width: 100%;
+	position: fixed;
+	top: 0;
+}
+.UWPmenu{
+	margin: 0;
+	display: inline;
+	overflow: hidden;
+	max-height: 100%;
+	max-width: 40px;
+	height: 100%;
+	position: fixed;
+	left: 0; top:24px;
+}
+.UWPslider{
+	margin: 0;
+	display: inline;
+	overflow: hidden;
+	max-height: 100%;
+	max-width: 160px;
+	width: 160px;
+	height: 100%;
+	position: fixed;
+	left: 40px; top:24px;
+}
+.UWPcontent{
+	margin: 0;
+	display: block;
+	overflow: auto;
+	position: absolute;
+	top:24px; left: 200px; right: 68px; bottom: 32px;
+}
+.UWPright{
+	margin: 0;
+	display: inline;
+	overflow: hidden;
+	max-height: 100%;
+	max-width: 300px;
+	height: 100%
+	width: 300px;
+	position: fixed;
+	right: 0; top: 24px; bottom: 32px;
+}
+.DialogButtons{
+	margin: 0;
+	display: inline;
+	overflow: hidden;
+	height: 32px;
+	max-height: 32px;
+	max-width: 100%;
+	position: fixed;
+	right: 0; bottom: 0;
+}

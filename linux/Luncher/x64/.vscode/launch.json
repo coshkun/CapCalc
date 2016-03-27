@@ -1,0 +1,37 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Launch",
+			"type": "node",
+			"request": "lunch",
+			"program": "${workspaceRoot}/src/main.js",
+			"stopOnEntry": false,
+			"args": ["--remote-debugging-port=9222"],
+			"cwd": "${workspaceRoot}",
+			"preLaunchTask": null,
+			"runtimeExecutable": "${workspaceRoot}/nw",
+			"runtimeArgs": [
+				// "--nolazy",
+			],
+			// "env": {
+				// "NODE_ENV": "development"
+			// },
+			"externalConsole": false,
+			"sourceMaps": false,
+			"outDir": null
+		},
+		{
+			"name": "Attach",
+			"type": "node",
+			"request": "attach",
+			"port": 9222,
+			"address": "localhost",
+			"restart": false,
+			"sourceMaps": false,
+			"outDir": null,
+			"localRoot": "${workspaceRoot}",
+			"remoteRoot": null
+		}
+	]
+}
